@@ -1,5 +1,8 @@
 from urllib.parse import *
 import json
+import requests
+from PIL import Image
+from io import BytesIO
 
 
 def create_params(**kwargs):
@@ -18,3 +21,11 @@ def create_params(**kwargs):
     if params:
         query_string = urlencode(eval(params))
     return "{}?{}".format(url,query_string)
+
+
+
+
+url = 'https://avatars.githubusercontent.com/u/95700260?v=4'
+response = requests.get(url)
+img = Image.open(BytesIO(response.content))
+print(img.format)
