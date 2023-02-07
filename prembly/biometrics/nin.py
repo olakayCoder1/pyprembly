@@ -1,7 +1,7 @@
 from prembly.base import BaseConfig
 from prembly.exceptions import *
 from prembly.utils import create_request_url
-
+import urllib
 
 class Nin(BaseConfig):
 
@@ -88,10 +88,11 @@ class Nin(BaseConfig):
         if not image:
             raise MissingRequiredDataError('Required data "image" not provided')
         else:
+            image = open('image','rb').read()
             data.update({'image': image} ) 
-
+            
         verify_url = self._BASE_END_POINT_VERSION + '/biometrics/merchant/data/verification/nin'
-
+        
         url = create_request_url(url=verify_url) 
         self._handle_request('POST', url , data=data)
 
