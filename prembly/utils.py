@@ -5,7 +5,7 @@ from PIL import Image
 from io import BytesIO
 
 
-def create_params(**kwargs):
+def create_request_url(**kwargs):
     """
     Add query params to the url, the kwargs should include url, params eg
     url  =   'https://www.google.com/search'\n
@@ -20,7 +20,9 @@ def create_params(**kwargs):
     params = kwargs.get('params')
     if params:
         query_string = urlencode(eval(params))
-    return "{}?{}".format(url,query_string)
+        return "{}?{}".format(url,query_string)
+    return "{}".format(url)
+        
 
 
 

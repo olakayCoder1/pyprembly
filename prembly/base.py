@@ -6,10 +6,11 @@ from prembly.configuration import (
     PREMBLY_X_API_KEY
 )
 from prembly.exceptions import (
-    MissingAuthKeyError
+    MissingAuthKeyError , InvalidMethodError
 )
 
-
+import requests
+import json
 
 
 class BaseConfig(object):
@@ -17,30 +18,22 @@ class BaseConfig(object):
     Base class that will be subclass by all other classes 
     """
     _BASE_END_POINT_DICTIONARY =  {
-        'live': 'https://api.myidentitypass.com',
-        'test': 'https://sandbox.myidentitypass.com',
-        'sandbox' : "https://sandbox.myidentitypass.com",
+        'live': 'https://api.myidentitypass.com/',
+        'test': 'https://sandbox.myidentitypass.com/',
+        'sandbox' : "https://sandbox.myidentitypass.com/",
     }
 
-    _API_VERSION = 'v1'
+    _API_VERSION = PREMBLY_API_VERSION
 
     _BASE_END_POINT = _BASE_END_POINT_DICTIONARY.get(
         PREMBLY_ENVIRONMENT , 'test'
     )
 
+    _BASE_END_POINT_VERSION = _BASE_END_POINT + _API_VERSION
+
     _CONTENT_TYPE = "application/json"
     
     
-    def __init__(self , api_version: str =  None ):
-
-
-        if isinstance(api_version , int ):
-            message = 'api_version should be of type string i.e v1 or v2 .....'
-            raise TypeError(message)
-        else:
-            self._API_VERSION = api_version
-
-
 
     if PREMBLY_APP_ID is None:
         raise MissingAuthKeyError(
@@ -67,9 +60,36 @@ class BaseConfig(object):
         }
 
     
+    def _handle_request(self, method, url, data=None):
 
+        """
+        Generic function to handle all API url calls
+        Returns a python tuple of status code, status(bool), message, data
+        """
+        method_map = {
+            'GET': requests.get,
+            'POST': requests.post,
+            'PUT': requests.put,
+            'DELETE': requests.delete
+        }
 
-m = BaseConfig()
+        payload = json.dumps(data) if data else data
+        request = method_map.get(method)
+
+        if not request:
+            raise InvalidMethodError("Request method not recognized or implemented")
+
+        response = request(url, headers=self._headers(), data=payload)
+
+        if response.status_code == 404:
+            return response.status_code, False, "The object request cannot be found", None
+
+        if response.status_code in [200, 201 , 401 ]:
+            return response
+        else:
+            return response
+            # body = response.json()
+            # return response.status_code, body.get('status'), body.get('message'), body.get('errors')
 
 
 
