@@ -7,7 +7,7 @@ from prembly.biometrics.nin import Nin
 
 class TestNin(TestCase):
 
-
+    pass
     # def test_nin_slip_verification(self):
     #     v = Nin.verify_slip()
     #     self.assertEqual(v.status_code, 400 )
