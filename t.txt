@@ -1,0 +1,43 @@
+(a) The probability that a customer purchases none of these items is given by 1 - P(purchasing at least one item), where P(purchasing at least one item) is the sum of the probabilities of purchasing each individual item and all combinations of items.
+
+P(purchasing at least one item) = P(purchasing a suit) + P(purchasing a shirt) + P(purchasing a tie) - P(purchasing both a suit and a shirt) - P(purchasing both a suit and a tie) - P(purchasing both a shirt and a tie) + P(purchasing all three items)
+
+= .22 + .30 + .28 - .11 - .14 - .10 + .06
+
+= .71
+
+Therefore, P(purchasing none of these items) = 1 - .71 = .29
+
+(b) The probability that a customer purchases exactly 1 item is the sum of the probabilities of purchasing each individual item and not purchasing the other two items.
+
+P(purchasing exactly 1 item) = P(purchasing a suit) + P(purchasing a shirt) + P(purchasing a tie) - 2 * P(purchasing both a suit and a shirt) - 2 * P(purchasing both a suit and a tie) - 2 * P(purchasing both a shirt and a tie) + 3 * P(purchasing all three items)
+
+= .22 + .30 + .28 - 2 * .11 - 2 * .14 - 2 * .10 + 3 * .06
+
+= .57
+
+
+
+
+
+
+
+
+
+
+
+To find the probability that the minimum of the two midtown temperatures is 70°F, we need to calculate the probability that either both temperatures are 70°F or one of the temperatures is 70°F and the other is less than 70°F.
+
+Let's call the event that both temperatures are 70°F as event D. We have:
+
+P(D) = P(A and B) = P(A) * P(B) = .3 * .4 = .12
+
+Next, let's call the event that one temperature is 70°F and the other is less than 70°F as event E. We have:
+
+P(E) = P(A and not B) + P(not A and B) = P(A) * (1 - P(B)) + (1 - P(A)) * P(B) = .3 * (1 - .4) + (1 - .3) * .4 = .18
+
+Finally, the probability that the minimum of the two midtown temperatures is 70°F is given by the sum of the probabilities of events D and E:
+
+P(minimum is 70°F) = P(D) + P(E) = .12 + .18 = .30
+
+So, the probability that the minimum of the two midtown temperatures is 70°F is 0.30.
