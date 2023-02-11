@@ -14,7 +14,11 @@ PREMBLY_API_VERSION = os.getenv('PREMBLY_API_VERSION', 'v1')
 PREMBLY_ENVIRONMENT = os.getenv('PREMBLY_ENVIRONMENT' , None)
 
 
-class Configuration(object):
-    pass
+BASE_END_POINT_DICTIONARY =  {
+        'live': 'https://api.myidentitypass.com/',
+        'test': 'https://sandbox.myidentitypass.com/',
+        'sandbox' : "https://sandbox.myidentitypass.com/",
+    }
+
 
 

@@ -5,6 +5,8 @@ import urllib
 
 class Nin(BaseConfig):
 
+    def __init__(self, prembly_app_id=None, prembly_x_api_key=None, api_version='v1', environment='sandbox'):
+        super().__init__(prembly_app_id, prembly_x_api_key, api_version, environment)
 
     def verify_slip(self, image=None) :
         """
@@ -15,6 +17,8 @@ class Nin(BaseConfig):
             raise MissingRequiredDataError('Required data "image" not provided')
         verify_url = self._BASE_END_POINT_VERSION + '/biometrics/merchant/data/verification/nin/image'
         url = create_request_url(url=verify_url) 
+
+        print(url)
         self._handle_request('POST', url , data=image)
 
 
