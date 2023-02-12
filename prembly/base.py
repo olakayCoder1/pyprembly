@@ -85,21 +85,12 @@ class BaseConfig(object):
             raise InvalidMethodError("Request method not recognized or implemented")
 
         response = request(url, headers=self._headers(), data=payload)
-        
+
         print(response)
         print(response.status_code)
 
         return response
         
-        # if response.status_code == 404:
-        #     return response
-
-        # if response.status_code in [200, 201 , 401 ]:
-        #     return response
-        # else:
-        #     return response
-            # body = response.json()
-            # return response.status_code, body.get('status'), body.get('message'), body.get('errors')
 
 
 
