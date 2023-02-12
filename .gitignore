@@ -2,3 +2,6 @@ venv/
 .env
 _pycache_/
 __pycache__/
+build/
+dist/
+prembly.egg-info/
