@@ -12,7 +12,8 @@ class TestNin(TestCase):
         self.Nin = Nin(
             prembly_app_id='3fbd33f3-fb9a-4219-a13a-49490e2ae9d2',
             prembly_x_api_key='test_ucc8c5fyl6rl78idn3lqjp:ogINip3R6hrzzARkTI42vv13ybY',
-            api_version='v2'
+            api_version='v2',
+            environment='live'
         )
 
 

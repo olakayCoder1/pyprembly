@@ -17,7 +17,10 @@ class Nin(BaseConfig):
             raise MissingRequiredDataError('Required data "image" not provided')
         verify_url = self._BASE_END_POINT_VERSION + '/biometrics/merchant/data/verification/nin/image'
         url = create_request_url(url=verify_url) 
-        self._handle_request('POST', url , data=image)
+        print(url)
+        return self._handle_request('POST', url , data=image)
+
+
 
 
 
@@ -40,7 +43,8 @@ class Nin(BaseConfig):
         verify_url = self._BASE_END_POINT_VERSION + '/biometrics/merchant/data/verification/nin_wo_face'
 
         url = create_request_url(url=verify_url) 
-        self._handle_request('POST', url , data=data)
+        print(url)
+        return self._handle_request('POST', url , data=data)
 
 
 
