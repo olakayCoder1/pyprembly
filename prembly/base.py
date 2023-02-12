@@ -27,7 +27,7 @@ class BaseConfig(object):
 
         self._BASE_END_POINT_VERSION = self._BASE_END_POINT + self._API_VERSION
 
-        print(self._BASE_END_POINT_VERSION)
+
         if prembly_app_id:
             self._PREMBLY_APP_ID = prembly_app_id
         else:
@@ -85,6 +85,7 @@ class BaseConfig(object):
             raise InvalidMethodError("Request method not recognized or implemented")
 
         response = request(url, headers=self._headers(), data=payload)
+        
         print(response)
         print(response.status_code)
 

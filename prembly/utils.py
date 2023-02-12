@@ -27,7 +27,7 @@ def create_request_url(**kwargs):
 
 
 
-url = 'https://avatars.githubusercontent.com/u/95700260?v=4'
-response = requests.get(url)
-img = Image.open(BytesIO(response.content))
-print(img.format)
+# url = 'https://avatars.githubusercontent.com/u/95700260?v=4'
+# response = requests.get(url)
+# img = Image.open(BytesIO(response.content))
+# print(img.format)

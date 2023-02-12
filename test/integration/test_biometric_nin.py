@@ -16,21 +16,17 @@ class TestNin(TestCase):
         )
 
 
-    # def test_verify_slip(self):
-    #     response = self.Nin.verify_slip(image='https://asset.cloudinary.com/dh3i1wodq/089761016db6dab086ca450bf2465898')
-    #     print(response)
-    #     self.assertEqual(response['status_code'], 200)
-    #     self.assertEqual(response['detail'], "Verification Successful")
+    def test_verify_slip(self):
+        response = self.Nin.verify_slip(image='https://asset.cloudinary.com/dh3i1wodq/089761016db6dab086ca450bf2465898')
+        print(response)
+        self.assertEqual(response.status_code , 200)
+        self.assertEqual(response['detail'], "Verification Successful")
 
     def test_verify_lookup(self):
         response = self.Nin.verify_lookup(self.number,self.number_nin)
         print(response)
-        self.assertEqual(response['status_code'], 200)
+        self.assertEqual(response.status_code , 200)
 
-
-    # def test_verify_virtual(self):
-    #     response = Nin.verify_virtual(number='', number_nin=self.number_nin)
-    #     self.assertEqual(response['status_code'], 200)
 
 
 
