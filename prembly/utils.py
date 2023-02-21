@@ -1,8 +1,4 @@
 from urllib.parse import *
-import json
-import requests
-from PIL import Image
-from io import BytesIO
 
 
 def create_request_url(**kwargs):

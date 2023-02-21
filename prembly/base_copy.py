@@ -17,15 +17,15 @@ class BaseConfig(object):
     
 
     def __init__( 
-        self, prembly_app_id: str = None , prembly_x_api_key : str = None , 
-        api_version: str ='v1' , environment : str ='sandbox', country_code : str = 'NGN' ):
+        self, prembly_app_id=None ,  prembly_x_api_key=None , 
+        api_version='v1' , environment='sandbox' ):
 
         
         self._BASE_END_POINT = BASE_END_POINT_DICTIONARY.get( environment  )
 
         self._API_VERSION = api_version
 
-        self._BASE_END_POINT_VERSION = self._BASE_END_POINT + self._API_VERSION + '/biometrics/merchant/data/verification'
+        self._BASE_END_POINT_VERSION = self._BASE_END_POINT + self._API_VERSION
 
 
         if prembly_app_id:
@@ -47,7 +47,6 @@ class BaseConfig(object):
             self._PREMBLY_X_API_KEY = prembly_x_api_key
         else:
             self._PREMBLY_X_API_KEY = os.getenv('PREMBLY_X_API_KEY', None)
-
 
         if self._PREMBLY_X_API_KEY is None:
             raise MissingAuthKeyError(
