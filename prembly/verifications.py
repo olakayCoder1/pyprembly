@@ -7,7 +7,6 @@ from prembly.utils import create_request_url
 class Verification(BaseConfig):
 
     
-
     def cac(self, rc_number: int = None , company_type : str ='RC' ):
         """
         Verify a business using rc_number
