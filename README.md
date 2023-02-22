@@ -34,7 +34,7 @@ Visit [Prembly](https://prembly.com/) to get both app id and x-api-key
 
 The package supports all Prembly Identitypass API endpoints for Nigeria.
 
-The available function are as follow:
+The available method of the `Verification` class are as follow:
 
 | SN | METHOD NAME | DESCRIPTION|
 | ------- | ----- | ------------- |
