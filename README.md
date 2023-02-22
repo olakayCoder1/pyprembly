@@ -23,9 +23,11 @@ Note: This is currently under active development
 
 To use pyprembly you will need to set the following in your environment variable
 
+```console
 PREMBLY_APP_ID="your application id"
 PREMBLY_X_API_KEY="your x_app_key id"
 PREMBLY_ENVIRONMENT="environment default to test"
+```
 
 Visit [Prembly](https://prembly.com/) to get both app id and x-api-key
 
