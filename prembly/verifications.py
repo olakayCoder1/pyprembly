@@ -90,7 +90,7 @@ class Verification(BaseConfig):
 
     def bvn_with_face(self, number: int = None , image: str = None ):
         """
-        Verify a Bank Verification Number (BVN)
+        Verify a Bank Verification Number (BVN) using image and number
         number : Bank Verification Number
         image : Image url(png, jpeg , base64)
         """
@@ -110,7 +110,7 @@ class Verification(BaseConfig):
         return self._handle_request('POST', url , data=data)
 
     
-    def phone_number_verification(self, number: int = None , v_type:str='normal'):
+    def phone_number(self, number: int = None , v_type:str='normal'):
         """
         Verify a Phone Number
         number : Phone number\n
@@ -138,7 +138,7 @@ class Verification(BaseConfig):
         return self._handle_request('GET', url )
 
 
-    def bank_account_verification(self , number:int=None,bank_code:str=None):
+    def bank_account(self , number:int=None,bank_code:str=None):
         """
         Verify bank account number
         number : bank account number
@@ -159,7 +159,7 @@ class Verification(BaseConfig):
         return self._handle_request('POST', url , data=data )
 
     
-    def advance_bank_account_verification(self , number:int=None,bank_code:str=None):
+    def advance_bank_account(self , number:int=None,bank_code:str=None):
         """
         Verify bank account number
         number : bank account number
@@ -180,7 +180,7 @@ class Verification(BaseConfig):
         return self._handle_request('POST', url , data=data )
 
 
-    def bank_account_with_name_verification(
+    def bank_account_with_name(
         self , number:int=None,bank_code:str=None , 
         customer_name:str=None , customer_reference:str=None):
         """
@@ -208,7 +208,7 @@ class Verification(BaseConfig):
 
 
 
-    def voters_card_image_verification(self , image:str=None):
+    def voters_card_image(self , image:str=None):
         """
         Verify voters card ID image
         image : voters card image(png,jpg, base64)
@@ -227,7 +227,7 @@ class Verification(BaseConfig):
         return self._handle_request('POST', url , data=data )
 
     
-    def voters_card_lookup_verification(self , number:int=None , state:str=None , last_name:str=None):
+    def voters_card_lookup(self , number:int=None , state:str=None , last_name:str=None):
         """
         Verify voters card number
         number : voters card number
@@ -256,7 +256,7 @@ class Verification(BaseConfig):
 
     
 
-    def basic_drivers_license_verification(
+    def basic_drivers_license(
         self , number:int=None , dob:str=None , 
         first_name:str=None, last_name:str=None):
         """
@@ -292,7 +292,7 @@ class Verification(BaseConfig):
         return self._handle_request('POST', url , data=data )
 
 
-    def advance_drivers_license_verification(
+    def advance_drivers_license(
         self , number:int=None , dob:str=None , 
         first_name:str=None, last_name:str=None):
         """
@@ -329,7 +329,7 @@ class Verification(BaseConfig):
         return self._handle_request('POST', url , data=data )
 
 
-    def image_drivers_license_verification(self ,  image:str=None):
+    def image_drivers_license(self ,  image:str=None):
         """
         Verify drivers license ID image
         image : License image
@@ -360,7 +360,7 @@ class Verification(BaseConfig):
 
 
     
-    def national_passport_verification(self , number:int=None,  last_name:str=None):
+    def international_passport(self , number:int=None,  last_name:str=None):
         """
         Verify international passport
         number : passport number
@@ -374,7 +374,7 @@ class Verification(BaseConfig):
 
 
     
-    def national_passport_image_verification(self , image:str=None,  customer_reference:str=None , customer_name:str=None):
+    def international_passport_image(self , image:str=None,  customer_reference:str=None , customer_name:str=None):
         """
         Verify international passport image 
         customer_reference : unique customer reference
@@ -388,7 +388,7 @@ class Verification(BaseConfig):
         return self._handle_request('POST', url , data=data )
 
 
-    def national_passport_with_face_verification(self , image:str=None,  last_name:str=None , number:int=None):
+    def international_passport_with_face(self , image:str=None,  last_name:str=None , number:int=None):
         """
         Verify international passport image 
         last_name : user's last name
@@ -402,7 +402,7 @@ class Verification(BaseConfig):
         return self._handle_request('POST', url , data=data )
 
 
-    def national_passport_async_verification(self , last_name:str=None , number:int=None):
+    def international_passport_async(self , last_name:str=None , number:int=None):
         """
         Verify international passport in an asynchronous manner. The passport details will be verified and send later to your webhook url
         NOTE : configure your webhook URL before using this function
@@ -417,7 +417,7 @@ class Verification(BaseConfig):
 
 
     
-    def credit_bureau_verification(
+    def credit_bureau(
         self, customer_reference, 
         customer_name:str=None , number:int=None, mode:str=None , dob:str=None
         ):
@@ -440,7 +440,7 @@ class Verification(BaseConfig):
         return self._handle_request('POST', url , data=data )
 
     
-    def credit_bureau_commercial_verification(
+    def credit_bureau_commercial(
         self, customer_reference, 
         customer_name:str=None , rc_number:int=None
         ):
@@ -461,7 +461,7 @@ class Verification(BaseConfig):
         return self._handle_request('POST', url , data=data )
 
 
-    def credit_bureau_commercial_basic_verification(
+    def credit_bureau_commercial_basic(
         self,customer_name:str=None , rc_number:int=None ):
         """
         Verify basic credit details of a business
