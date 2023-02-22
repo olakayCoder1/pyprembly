@@ -87,4 +87,4 @@ Verification(
     environment='live'
 ).bank_account_verification()
 ``` 
-We recommend that you store your app id and x api key in an environment variable as PREMBLY_APP_ID and PREMBLY_X_API_KEY respectively.
+We recommend that you store your app id and x api key in an environment variable as PREMBLY_APP_ID and PREMBLY_X_API_KEY respectively. `MissingRequiredDataError` tells that you do not provide a required data for the current method call 
