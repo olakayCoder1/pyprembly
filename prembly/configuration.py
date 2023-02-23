@@ -15,9 +15,9 @@ PREMBLY_ENVIRONMENT = os.getenv('PREMBLY_ENVIRONMENT' , None)
 
 
 BASE_END_POINT_DICTIONARY =  {
-        'live': 'https://api.myidentitypass.com/',
-        'test': 'https://sandbox.myidentitypass.com/',
-        'sandbox' : "https://sandbox.myidentitypass.com/",
+        'live': 'https://api.myidentitypass.com',
+        'test': 'https://sandbox.myidentitypass.com',
+        'sandbox' : "https://sandbox.myidentitypass.com",
     }
 
 

@@ -5,13 +5,14 @@ from prembly.exceptions import (
 import os
 import requests
 import json
+from urllib.parse import *
+from prembly.utils import create_request_url
 
 
 class BaseConfig(object):
     """
     Base class that will be subclass by all other classes 
     """
-
 
     _CONTENT_TYPE = "application/json"
     
@@ -26,6 +27,8 @@ class BaseConfig(object):
         self._API_VERSION = api_version
 
         self._BASE_END_POINT_VERSION = self._BASE_END_POINT + self._API_VERSION + '/biometrics/merchant/data/verification'
+
+        self._API_URL_BASE = self._BASE_END_POINT + self._API_VERSION + '/biometrics/merchant/data/verification'
 
 
         if prembly_app_id:
@@ -62,13 +65,36 @@ class BaseConfig(object):
 
     def _headers(self):
         return {
-            "Content-Type": self._CONTENT_TYPE, 
+            "Content-Type": "application/json", 
             'x-api-key':  self._PREMBLY_X_API_KEY, 
             'app-id' : self._PREMBLY_APP_ID  
         }
 
 
     
+    def create_request_url(self , **kwargs):
+        """
+        Add query params to the url, the kwargs should include suburl, params eg
+
+        Kwargs:
+            suburl  =   '/credit_bureau/commercial/basic'\n
+            params =  {
+                'number' : '09082455489',
+            }\n
+        create_params(url=url , params=json.dumps(params))
+
+        Result : 
+            assuming base url is https://sandbox.myidentitypass.com/biometrics/merchant/data/verification
+            https://sandbox.myidentitypass.com/biometrics/merchant/data/verification/credit_bureau/commercial/basic?number=09082455489
+        """
+        suburl = kwargs.get('suburl')
+        params = kwargs.get('params')
+        if params:
+            query_string = urlencode(eval(params))
+            return "{}?{}".format(self._API_URL_BASE , suburl,query_string)
+        return "{}".format(self._API_URL_BASE , suburl  )
+
+
     def _handle_request(self, method, url, data=None):
         """
         Generic function to handle all API url calls

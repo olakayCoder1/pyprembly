@@ -68,7 +68,7 @@ The available method of the `Verification` class are as follow:
 To make a simple API call:
 
 ```
-from pyprembly.verifications import Verification
+from pyprembly.biometrics.data.nigeria import Verification
 
 
 try:
