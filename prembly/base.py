@@ -9,6 +9,9 @@ from urllib.parse import *
 from prembly.utils import create_request_url
 
 
+
+
+        
 class BaseConfig(object):
     """
     Base class that will be subclass by all other classes 
@@ -17,62 +20,52 @@ class BaseConfig(object):
     _CONTENT_TYPE = "application/json"
     
 
-    def __init__( 
-        self, prembly_app_id: str = None , prembly_x_api_key : str = None , 
-        api_version: str ='v1' , environment : str ='sandbox', country_code : str = 'NGN' ):
 
         
-        self._BASE_END_POINT = BASE_END_POINT_DICTIONARY.get( environment  )
+    _BASE_END_POINT = BASE_END_POINT_DICTIONARY.get( 'test'  )
 
-        self._API_VERSION = api_version
+    _API_VERSION = 'v1'
 
-        self._BASE_END_POINT_VERSION = self._BASE_END_POINT + self._API_VERSION + '/biometrics/merchant/data/verification'
-
-        self._API_URL_BASE = self._BASE_END_POINT + self._API_VERSION + '/biometrics/merchant/data/verification'
+    _API_URL_BASE =_BASE_END_POINT +_API_VERSION + '/biometrics/merchant/data/verification'
 
 
-        if prembly_app_id:
-            self._PREMBLY_APP_ID = prembly_app_id
-        else:
-            self._PREMBLY_APP_ID = os.getenv('PREMBLY_APP_ID', None)
-
-        if self._PREMBLY_APP_ID is None:
-            raise MissingAuthKeyError(
-                """
-                We can't find application id in your environment key variable.
-                to set :
-                    PREMBLY_APP_ID="your application id"
-                """
-            )
+    _PREMBLY_APP_ID = os.getenv('PREMBLY_APP_ID', None)
 
 
-        if prembly_app_id:
-            self._PREMBLY_X_API_KEY = prembly_x_api_key
-        else:
-            self._PREMBLY_X_API_KEY = os.getenv('PREMBLY_X_API_KEY', None)
+    if _PREMBLY_APP_ID is None:
+        raise MissingAuthKeyError(
+            """
+            We can't find application id in your environment key variable.
+            to set :
+                PREMBLY_APP_ID="your application id"
+            """
+        )
 
 
-        if self._PREMBLY_X_API_KEY is None:
-            raise MissingAuthKeyError(
-                """
-                We can't find prembly_x_api_key id in your environment key variable.
-                to set :
-                    PREMBLY_X_API_KEY="your x_app_key id"
-                """
-            )
+    _PREMBLY_X_API_KEY = os.getenv('PREMBLY_X_API_KEY', None)
 
 
+    if _PREMBLY_X_API_KEY is None:
+        raise MissingAuthKeyError(
+            """
+            We can't find prembly_x_api_key id in your environment key variable.
+            to set :
+                PREMBLY_X_API_KEY="your x_app_key id"
+            """
+        )
 
-    def _headers(self):
+
+    @classmethod
+    def _headers(cls):
         return {
             "Content-Type": "application/json", 
-            'x-api-key':  self._PREMBLY_X_API_KEY, 
-            'app-id' : self._PREMBLY_APP_ID  
+            'x-api-key': cls._PREMBLY_X_API_KEY, 
+            'app-id' : cls._PREMBLY_APP_ID  
         }
 
 
-    
-    def create_request_url(self , **kwargs):
+    @classmethod
+    def create_request_url(cls , **kwargs):
         """
         Add query params to the url, the kwargs should include suburl, params eg
 
@@ -91,11 +84,12 @@ class BaseConfig(object):
         params = kwargs.get('params')
         if params:
             query_string = urlencode(eval(params))
-            return "{}?{}".format(self._API_URL_BASE , suburl,query_string)
-        return "{}".format(self._API_URL_BASE , suburl  )
+            return "{}{}?{}".format(cls._API_URL_BASE , suburl ,query_string)
+        return "{}{}".format(cls._API_URL_BASE , suburl  )
 
 
-    def _handle_request(self, method, url, data=None):
+    @classmethod
+    def _handle_request(cls, method, url, data=None):
         """
         Generic function to handle all API url calls
         Returns a python tuple of status code, status(bool), message, data
@@ -111,10 +105,7 @@ class BaseConfig(object):
         if not request:
             raise InvalidMethodError("Request method not recognized or implemented")
 
-        response = request(url, headers=self._headers(), data=payload)
-
-        print(response)
-        print(response.status_code)
+        response = request(url, headers=cls._headers(), data=payload)
 
         return response
         

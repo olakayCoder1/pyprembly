@@ -2,6 +2,7 @@ from prembly.base import BaseConfig
 from prembly.utils import create_request_url
 
 
+
 class Verification(BaseConfig):
     """
     Base class for all IdentityPass API available in Ghana

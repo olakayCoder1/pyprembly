@@ -9,7 +9,8 @@ class Verification(BaseConfig):
     Base class for all IdentityPass API available in Nigeria
     """
     
-    def cac(self, rc_number: int = None , company_type : str ='RC' ):
+    @classmethod
+    def cac(cls, rc_number: int = None , company_type : str ='RC' ):
         """
         Verify a business using rc_number
         
@@ -21,11 +22,11 @@ class Verification(BaseConfig):
             Json data from Prembly API.
         """
         data = {'company_type': company_type , 'rc_number': rc_number}
-        url = self.create_request_url(suburl='/cac') 
-        return self._handle_request('POST', url , data=data)
+        url = cls.create_request_url(suburl='/cac') 
+        return cls._handle_request('POST', url , data=data)
 
-
-    def cac_with_name(self,company_name : str = None ):
+    @classmethod
+    def cac_with_name(cls,company_name : str = None ):
         """
         Verify a business using rc_number
         company_name : The company name
@@ -37,13 +38,13 @@ class Verification(BaseConfig):
         # 092932
         # TEST COMPANY
         data = {'company_type': company_name ,'company_name': company_name}
-        verify_url = self._BASE_END_POINT_VERSION + '/cac_w_name'
-        url = self.create_request_url(suburl=verify_url) 
-        return self._handle_request('POST', url , data=data)
+        verify_url = cls._BASE_END_POINT_VERSION + '/cac_w_name'
+        url = cls.create_request_url(suburl=verify_url) 
+        return cls._handle_request('POST', url , data=data)
 
 
-    
-    def cac_advance(self,  rc_number: int = None ,  company_type : str ='RC' , company_name : str = None ):
+    @classmethod
+    def cac_advance(cls,  rc_number: int = None ,  company_type : str ='RC' , company_name : str = None ):
         """
         Verify a business using rc_number
         
@@ -58,11 +59,11 @@ class Verification(BaseConfig):
         # 092932
         # TEST COMPANY
         data = {'company_type': company_type , 'rc_number': rc_number , 'company_name': company_name }
-        url = self.create_request_url(suburl='/cac/advance') 
-        return self._handle_request('POST', url , data=data)
+        url = cls.create_request_url(suburl='/cac/advance') 
+        return cls._handle_request('POST', url , data=data)
 
-
-    def bvn_number(self, number: int = None ):
+    @classmethod
+    def bvn_number(cls, number: int = None ):
         """
         Verify a Bank Verification Number (BVN)
         number : Bank Verification Number
@@ -72,11 +73,11 @@ class Verification(BaseConfig):
             Json data from Prembly API.
         """
         data = { 'number': number }
-        url = self.create_request_url(suburl='/bvn') 
-        return self._handle_request('POST', url , data=data)
+        url = cls.create_request_url(suburl='/bvn') 
+        return cls._handle_request('POST', url , data=data)
 
-
-    def bvn_with_face(self, number: int = None , image: str = None ):
+    @classmethod
+    def bvn_with_face(cls, number: int = None , image: str = None ):
         """
         Verify a Bank Verification Number (BVN) using image and number
        
@@ -87,11 +88,11 @@ class Verification(BaseConfig):
             Json data from Prembly API.
         """
         data = { 'image': image , 'number': number  }
-        url = self.create_request_url(suburl='/bvn_w_face') 
-        return self._handle_request('POST', url , data=data)
+        url = cls.create_request_url(suburl='/bvn_w_face') 
+        return cls._handle_request('POST', url , data=data)
 
-    
-    def phone_number(self, number: int = None , v_type:str='normal'):
+    @classmethod
+    def phone_number(cls, number: int = None , v_type:str='normal'):
         """
         Verify a Phone Number
         
@@ -103,19 +104,19 @@ class Verification(BaseConfig):
             Json data from Prembly API.
         """
         data = {'number': number }
-        url = self.create_request_url(suburl='/phone_number') 
-        return self._handle_request('POST', url , data=data)
+        url = cls.create_request_url(suburl='/phone_number') 
+        return cls._handle_request('POST', url , data=data)
 
-
-    def banks_code(self):
+    @classmethod
+    def banks_code(cls):
         """
         Get all banks code
         """
-        url = self.create_request_url(suburl='/bank_code') 
-        return self._handle_request('GET', url )
+        url = cls.create_request_url(suburl='/bank_code') 
+        return cls._handle_request('GET', url )
 
-
-    def bank_account(self , number:int=None,bank_code:str=None):
+    @classmethod
+    def bank_account(cls , number:int=None,bank_code:str=None):
         """
         Verify bank account number
         
@@ -128,11 +129,11 @@ class Verification(BaseConfig):
         data = {
                 'bank_code': bank_code ,  'number': number
             }
-        url = self.create_request_url(suburl='/bank_account') 
-        return self._handle_request('POST', url , data=data )
+        url = cls.create_request_url(suburl='/bank_account') 
+        return cls._handle_request('POST', url , data=data )
 
-    
-    def advance_bank_account(self , number:int=None,bank_code:str=None):
+    @classmethod
+    def advance_bank_account(cls , number:int=None,bank_code:str=None):
         """
         Verify bank account number
         
@@ -143,12 +144,12 @@ class Verification(BaseConfig):
             Json data from Prembly API.
         """
         data = {'bank_code': bank_code ,  'number': number}
-        url = self.create_request_url(suburl='/bank_account/advance') 
-        return self._handle_request('POST', url , data=data )
+        url = cls.create_request_url(suburl='/bank_account/advance') 
+        return cls._handle_request('POST', url , data=data )
 
-
+    @classmethod
     def bank_account_with_name(
-        self , number:int=None,bank_code:str=None , 
+        cls , number:int=None,bank_code:str=None , 
         customer_name:str=None , customer_reference:str=None):
         """
         Verify bank account number
@@ -165,12 +166,12 @@ class Verification(BaseConfig):
                  'customer_reference': customer_reference,
                  'customer_name':customer_name
                 }
-        url = self.create_request_url(suburl='/bank_account/comparism') 
-        return self._handle_request('POST', url , data=data )
+        url = cls.create_request_url(suburl='/bank_account/comparism') 
+        return cls._handle_request('POST', url , data=data )
 
 
-
-    def voters_card_image(self , image:str=None):
+    @classmethod
+    def voters_card_image(cls , image:str=None):
         """
         Verify voters card ID image
         
@@ -180,11 +181,11 @@ class Verification(BaseConfig):
             Json data from Prembly API.
         """
         data = {'image': image }
-        url = self.create_request_url(suburl='/voters_card/image') 
-        return self._handle_request('POST', url , data=data )
+        url = cls.create_request_url(suburl='/voters_card/image') 
+        return cls._handle_request('POST', url , data=data )
 
-    
-    def voters_card_lookup(self , number:int=None , state:str=None , last_name:str=None):
+    @classmethod
+    def voters_card_lookup(cls , number:int=None , state:str=None , last_name:str=None):
         """
         Verify voters card number
         
@@ -199,13 +200,13 @@ class Verification(BaseConfig):
         #test
         #Lagos
         data = { 'number': number , 'state': state , 'last_name' : last_name}
-        url = self.create_request_url(suburl='/voters_card') 
-        return self._handle_request('POST', url , data=data )
+        url = cls.create_request_url(suburl='/voters_card') 
+        return cls._handle_request('POST', url , data=data )
 
     
-
+    @classmethod
     def basic_drivers_license(
-        self , number:int=None , dob:str=None , 
+        cls , number:int=None , dob:str=None , 
         first_name:str=None, last_name:str=None):
         """
         Verify drivers license
@@ -226,12 +227,12 @@ class Verification(BaseConfig):
             'number': number , 'dob' : dob, 
             'first_name' : first_name, 'last_name' : last_name
         }
-        url = self.create_request_url(suburl='/drivers_license/basic') 
-        return self._handle_request('POST', url , data=data )
+        url = cls.create_request_url(suburl='/drivers_license/basic') 
+        return cls._handle_request('POST', url , data=data )
 
-
+    @classmethod
     def advance_drivers_license(
-        self , number:int=None , dob:str=None , 
+        cls , number:int=None , dob:str=None , 
         first_name:str=None, last_name:str=None):
         """
         Verify drivers license
@@ -252,11 +253,11 @@ class Verification(BaseConfig):
         data = {'number': number , 'dob' : dob, 
                 'first_name' : first_name, 'last_name' : last_name
                 }
-        url = self.create_request_url(suburl='/drivers_license/advance') 
-        return self._handle_request('POST', url , data=data )
+        url = cls.create_request_url(suburl='/drivers_license/advance') 
+        return cls._handle_request('POST', url , data=data )
 
-
-    def image_drivers_license(self ,  image:str=None):
+    @classmethod
+    def image_drivers_license(cls ,  image:str=None):
         """
         Verify drivers license ID image
         
@@ -266,11 +267,11 @@ class Verification(BaseConfig):
             Json data from Prembly API.
         """        
         data  = {'image' : image }
-        url = self.create_request_url(suburl='/drivers_license/image') 
-        return self._handle_request('POST', url , data=data )
+        url = cls.create_request_url(suburl='/drivers_license/image') 
+        return cls._handle_request('POST', url , data=data )
 
-
-    def image_drivers_license_verification(self , number:int=None,  dob:str=None ,  image:str=None):
+    @classmethod
+    def image_drivers_license_verification(cls , number:int=None,  dob:str=None ,  image:str=None):
         """
         Verify drivers license ID image
         
@@ -282,12 +283,12 @@ class Verification(BaseConfig):
             Json data from Prembly API.
         """        
         data  = {'image' : image , 'number': number , 'dob' : dob,  }
-        url = self.create_request_url(suburl='/drivers_license_with_face') 
-        return self._handle_request('POST', url , data=data )
+        url = cls.create_request_url(suburl='/drivers_license_with_face') 
+        return cls._handle_request('POST', url , data=data )
 
 
-    
-    def international_passport(self , number:int=None,  last_name:str=None):
+    @classmethod
+    def international_passport(cls , number:int=None,  last_name:str=None):
         """
         Verify international passport
         
@@ -298,12 +299,12 @@ class Verification(BaseConfig):
             Json data from Prembly API.
         """        
         data  = { 'number': number , 'last_name' : last_name,  }
-        url = self.create_request_url(suburl='/national_passport') 
-        return self._handle_request('POST', url , data=data )
+        url = cls.create_request_url(suburl='/national_passport') 
+        return cls._handle_request('POST', url , data=data )
 
 
-    
-    def international_passport_image(self , image:str=None,  customer_reference:str=None , customer_name:str=None):
+    @classmethod
+    def international_passport_image(cls , image:str=None,  customer_reference:str=None , customer_name:str=None):
         """
         Verify international passport image 
         
@@ -315,11 +316,11 @@ class Verification(BaseConfig):
             Json data from Prembly API.
         """        
         data  = { 'image': image , 'customer_reference' : customer_reference,'customer_name' : customer_name,  }
-        url = self.create_request_url(suburl='/national_passport_image') 
-        return self._handle_request('POST', url , data=data )
+        url = cls.create_request_url(suburl='/national_passport_image') 
+        return cls._handle_request('POST', url , data=data )
 
-
-    def international_passport_with_face(self , image:str=None,  last_name:str=None , number:int=None):
+    @classmethod
+    def international_passport_with_face(cls , image:str=None,  last_name:str=None , number:int=None):
         """
         Verify international passport image 
         
@@ -331,11 +332,11 @@ class Verification(BaseConfig):
             Json data from Prembly API.
         """        
         data  = { 'image': image , 'last_name' : last_name,'number' : number,  }
-        url = self.create_request_url(suburl='/national_passport_with_face') 
-        return self._handle_request('POST', url , data=data )
+        url = cls.create_request_url(suburl='/national_passport_with_face') 
+        return cls._handle_request('POST', url , data=data )
 
-
-    def international_passport_async(self , last_name:str=None , number:int=None):
+    @classmethod
+    def international_passport_async(cls , last_name:str=None , number:int=None):
         """
         Verify international passport in an asynchronous manner. The passport details will be verified and send later to your webhook url
         NOTE : configure your webhook URL before using this function
@@ -347,13 +348,13 @@ class Verification(BaseConfig):
             Json data from Prembly API.
         """        
         data  = { 'last_name' : last_name,'number' : number,  }
-        url = self.create_request_url(suburl='/national_passport/async') 
-        return self._handle_request('POST', url , data=data )
+        url = cls.create_request_url(suburl='/national_passport/async') 
+        return cls._handle_request('POST', url , data=data )
 
 
-    
+    @classmethod
     def credit_bureau(
-        self, customer_reference, 
+        cls, customer_reference, 
         customer_name:str=None , number:int=None, mode:str=None , dob:str=None
         ):
         """
@@ -373,12 +374,12 @@ class Verification(BaseConfig):
             'customer_reference' : customer_reference ,
             'number' : number,  'dob': dob  , 'mode' : mode
         }
-        url = self.create_request_url(suburl='/credit_bureau/customer/advance') 
-        return self._handle_request('POST', url , data=data )
+        url = cls.create_request_url(suburl='/credit_bureau/customer/advance') 
+        return cls._handle_request('POST', url , data=data )
 
-    
+    @classmethod
     def credit_bureau_commercial(
-        self, customer_reference, 
+        cls, customer_reference, 
         customer_name:str=None , rc_number:int=None
         ):
         """
@@ -396,12 +397,12 @@ class Verification(BaseConfig):
             'customer_reference' : customer_reference ,
             'rc_number' : rc_number
         }
-        url = self.create_request_url(suburl='/credit_bureau/commercial/advance') 
-        return self._handle_request('POST', url , data=data )
+        url = cls.create_request_url(suburl='/credit_bureau/commercial/advance') 
+        return cls._handle_request('POST', url , data=data )
 
-
+    @classmethod
     def credit_bureau_commercial_basic(
-        self,customer_name:str=None , rc_number:int=None ):
+        cls,customer_name:str=None , rc_number:int=None ):
         """
         Verify basic credit details of a business
         
@@ -415,12 +416,12 @@ class Verification(BaseConfig):
             'customer_name' : customer_name, 
             'rc_number' : rc_number
         }
-        url = self.create_request_url(suburl='/credit_bureau/commercial/basic') 
-        return self._handle_request('POST', url , data=data )
+        url = cls.create_request_url(suburl='/credit_bureau/commercial/basic') 
+        return cls._handle_request('POST', url , data=data )
 
-
+    @classmethod
     def credit_bureau_statement(
-        self,first_name:str=None ,phone_number:int=None ):
+        cls,first_name:str=None ,phone_number:int=None ):
         """
         Verify basic credit details of a business
         
@@ -434,12 +435,12 @@ class Verification(BaseConfig):
             'first_name' : first_name, 
             'phone_number' : phone_number
         }
-        url = self.create_request_url(suburl='/credit_bureau/commercial/basic') 
-        return self._handle_request('POST', url , data=data )
+        url = cls.create_request_url(suburl='/credit_bureau/commercial/basic') 
+        return cls._handle_request('POST', url , data=data )
 
 
-
-    def nin_slip(self, image: str = None) :
+    @classmethod
+    def nin_slip(cls, image: str = None) :
         """
         Verify a National Identification Number(NIN) Slip
         
@@ -448,15 +449,15 @@ class Verification(BaseConfig):
         Returns : 
             Json data from Prembly API.
         """
-        url = self.create_request_url(suburl='/biometrics/merchant/data/verification/nin/image') 
+        url = cls.create_request_url(suburl='/biometrics/merchant/data/verification/nin/image') 
 
-        return self._handle_request('POST', url , data=image)
-
-
+        return cls._handle_request('POST', url , data=image)
 
 
 
-    def nin_lookup(self, number=None , number_nin=None) :
+
+    @classmethod
+    def nin_lookup(cls, number=None , number_nin=None) :
         """
         Verify a National Identification Number(NIN) with phone number and (NIN) number
         
@@ -468,13 +469,13 @@ class Verification(BaseConfig):
         """
         data = {'number': number ,'number_nin': number_nin } 
         
-        url = self.create_request_url(suburl='/biometrics/merchant/data/verification/nin_wo_face') 
+        url = cls.create_request_url(suburl='/biometrics/merchant/data/verification/nin_wo_face') 
 
-        return self._handle_request('POST', url , data=data)
+        return cls._handle_request('POST', url , data=data)
 
 
-
-    def nin_virtual(self, number=None , number_nin=None) :
+    @classmethod
+    def nin_virtual(cls, number=None , number_nin=None) :
         """
         Verify a National Identification Number(NIN) with NIN and virtual number
         
@@ -493,12 +494,12 @@ class Verification(BaseConfig):
             
         """
         data = {'number': number ,'number_nin': number_nin } 
-        url = self.create_request_url(suburl='/biometrics/merchant/data/verification/nin_wo_face') 
-        return self._handle_request('POST', url , data=data)
+        url = cls.create_request_url(suburl='/biometrics/merchant/data/verification/nin_wo_face') 
+        return cls._handle_request('POST', url , data=data)
 
 
-    
-    def nin_face(self, number=None , image: str =None) :
+    @classmethod
+    def nin_face(cls, number=None , image: str =None) :
         """
         Verify a National Identification Number(NIN) with user's image
 
@@ -513,7 +514,7 @@ class Verification(BaseConfig):
         # data.update({'image': image} ) 
             
         url = create_request_url(subsuburl='/biometrics/merchant/data/verification/nin') 
-        return self._handle_request('POST', url , data=data)
+        return cls._handle_request('POST', url , data=data)
 
 
 
@@ -521,3 +522,4 @@ class Verification(BaseConfig):
 
 
 
+m = Verification.bank_account_with_name()
