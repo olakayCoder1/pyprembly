@@ -1,15 +1,18 @@
-from prembly.configuration import  BASE_END_POINT_DICTIONARY
-from prembly.exceptions import (
-    MissingAuthKeyError , InvalidMethodError
-)
-import os
 import requests
 import json
 from urllib.parse import *
-from prembly.utils import create_request_url
+from dotenv import load_dotenv
+from prembly.configuration import  PremblyConfiguration
+from prembly.exceptions import (
+    MissingAuthKeyError , InvalidMethodError , APIConnectionError
+)
 
 
-class BaseConfig(object):
+
+load_dotenv()
+
+
+class PremblyBase(object):
     """
     Base class that will be subclass by all other classes 
     """
@@ -18,23 +21,22 @@ class BaseConfig(object):
     
 
     def __init__( 
-        self, prembly_app_id: str = None , prembly_x_api_key : str = None , 
-        api_version: str ='v1' , environment : str ='sandbox', country_code : str = 'NGN' ):
+        self, prembly_app_id: str = None , 
+        prembly_x_api_key : str = None , 
+        api_version: str ='v1' , 
+        environment : str ='sandbox', 
+        country_code : str = 'NGN' 
+        ):
 
-        
-        self._BASE_END_POINT = BASE_END_POINT_DICTIONARY.get( environment  )
-
+        self._BASE_END_POINT = PremblyConfiguration.BASE_END_POINT_DICTIONARY.get( environment )
         self._API_VERSION = api_version
-
-        self._BASE_END_POINT_VERSION = self._BASE_END_POINT + self._API_VERSION + '/biometrics/merchant/data/verification'
-
         self._API_URL_BASE = self._BASE_END_POINT + self._API_VERSION + '/biometrics/merchant/data/verification'
 
 
         if prembly_app_id:
             self._PREMBLY_APP_ID = prembly_app_id
         else:
-            self._PREMBLY_APP_ID = os.getenv('PREMBLY_APP_ID', None)
+            self._PREMBLY_APP_ID = PremblyConfiguration.PREMBLY_APP_ID  
 
         if self._PREMBLY_APP_ID is None:
             raise MissingAuthKeyError(
@@ -49,7 +51,7 @@ class BaseConfig(object):
         if prembly_app_id:
             self._PREMBLY_X_API_KEY = prembly_x_api_key
         else:
-            self._PREMBLY_X_API_KEY = os.getenv('PREMBLY_X_API_KEY', None)
+            self._PREMBLY_X_API_KEY = PremblyConfiguration.PREMBLY_X_API_KEY
 
 
         if self._PREMBLY_X_API_KEY is None:
@@ -64,6 +66,7 @@ class BaseConfig(object):
 
 
     def _headers(self):
+
         return {
             "Content-Type": "application/json", 
             'x-api-key':  self._PREMBLY_X_API_KEY, 
@@ -77,8 +80,8 @@ class BaseConfig(object):
         Add query params to the url, the kwargs should include suburl, params eg
 
         Kwargs:
-            suburl  =   '/credit_bureau/commercial/basic'\n
-            params =  {
+            suburl  : eg  '/credit_bureau/commercial/basic'\n
+            params : eg  {
                 'number' : '09082455489',
             }\n
         create_params(url=url , params=json.dumps(params))
@@ -98,26 +101,52 @@ class BaseConfig(object):
     def _handle_request(self, method, url, data=None):
         """
         Generic function to handle all API url calls
-        Returns a python tuple of status code, status(bool), message, data
+        Args:
+            method (TYPE): request method type
+            url : request url
+            data : request data
+
+        Raises:
+            APIConnectionError: When there is issue communicating with Prembly API
+
+        Returns:
+            TYPE: Description
         """
-        method_map = {
+        method_dict = {
             'GET': requests.get,
             'POST': requests.post,
         }
 
         payload = json.dumps(data) if data else data
-        request = method_map.get(method)
+        request = method_dict.get(method)
 
         if not request:
             raise InvalidMethodError("Request method not recognized or implemented")
 
-        response = request(url, headers=self._headers(), data=payload)
-
-        print(response)
-        print(response.status_code)
-
+        try:
+            response = request(url, headers=self._headers(), data=payload)
+        except Exception as e:
+            # Would catch just requests.exceptions.RequestException, but can
+            # also raise ValueError, RuntimeError, etc.
+            self._handle_request_error(e)
         return response
         
+
+
+    def _handle_request_error(self, e):
+        if isinstance(e, requests.exceptions.RequestException):
+            msg = ("Unexpected error communicating with Prembly.  "
+                   "If this problem persists, let me know at "
+                   "programmerolakay@gmail.com.")
+
+        else:  # pragma: no cover
+            msg = ("Unexpected error communicating with Prembly. "
+                   "It looks like there's probably a configuration "
+                   "issue locally.  If this problem persists, let me "
+                   "know at programmerolakay@gmail.com.")
+        raise APIConnectionError(msg)
+        
+
 
 
 

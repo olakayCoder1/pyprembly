@@ -1,8 +1,8 @@
-from prembly.base import BaseConfig
+from prembly.base import PremblyBase
 from prembly.utils import create_request_url
 
 
-class Verification(BaseConfig):
+class DataVerification(PremblyBase):
     """
     Base class for all IdentityPass API available in South Africa
     """
@@ -11,7 +11,7 @@ class Verification(BaseConfig):
         """
         Verify user national id card
         
-        Args:
+        Params:
             firstname : user first name
             lastname : user first name
             nationalid : id card unique identifier
@@ -29,11 +29,11 @@ class Verification(BaseConfig):
         return self._handle_request('POST', url , data=data)
 
 
-    def business(self , customer_reference:str=None, customer_name:str= None , reg_number:str=None):
+    def company(self , customer_reference:str=None, customer_name:str= None , reg_number:str=None):
         """
         Verify business
         
-        Args:
+        Params:
             customer_reference :your customer reference
             customer_name : your customer name
             reg_number : business or company registration number

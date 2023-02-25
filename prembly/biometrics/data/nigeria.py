@@ -1,10 +1,10 @@
-from prembly.base import BaseConfig
+from prembly.base import PremblyBase
 from prembly.exceptions import *
 from prembly.utils import create_request_url
 
 
 
-class Verification(BaseConfig):
+class DataVerification(PremblyBase):
     """
     Base class for all IdentityPass API available in Nigeria
     """
@@ -13,7 +13,7 @@ class Verification(BaseConfig):
         """
         Verify a business using rc_number
         
-        Args:
+        Params:
             rc_number : The registration number of company
 
             company_type : company type : default - > RC
@@ -29,7 +29,7 @@ class Verification(BaseConfig):
         """
         Verify a business using rc_number
         company_name : The company name
-        Args:
+        Params:
             company_name : The company name
         Returns : 
             Json data from Prembly API.
@@ -47,7 +47,7 @@ class Verification(BaseConfig):
         """
         Verify a business using rc_number
         
-        Args:
+        Params:
             rc_number : The registration number of company
 
             company_type : company type : default - > RC
@@ -66,7 +66,7 @@ class Verification(BaseConfig):
         """
         Verify a Bank Verification Number (BVN)
         number : Bank Verification Number
-        Args:
+        Params:
             number : Bank Verification Number
         Returns : 
             Json data from Prembly API.
@@ -80,7 +80,7 @@ class Verification(BaseConfig):
         """
         Verify a Bank Verification Number (BVN) using image and number
        
-        Args:
+        Params:
             number : Bank Verification Number
             image : Image url(png, jpeg , base64)
         Returns : 
@@ -95,7 +95,7 @@ class Verification(BaseConfig):
         """
         Verify a Phone Number
         
-        Args:
+        Params:
             number : Phone number
 
             v_type : Phone number verification type eg advance or normal : default - > normal
@@ -119,7 +119,7 @@ class Verification(BaseConfig):
         """
         Verify bank account number
         
-        Args:
+        Params:
             number : bank account number
             bank_code : code of the user's bank
         Returns : 
@@ -130,13 +130,30 @@ class Verification(BaseConfig):
             }
         url = self.create_request_url(suburl='/bank_account') 
         return self._handle_request('POST', url , data=data )
+    
+
+
+    def all_bank_with_statement(self ):
+        """
+        Get all available banking institution that bank statement can be retrieve
+        """
+        url = self.create_request_url(suburl='/bank_statement/institutions') 
+        return self._handle_request('GET', url )
+    
+
+    # def bank_statement(self ):
+    #     """
+    #     Get all available banking institution that bank statement can be retrieve
+    #     """
+    #     url = self.create_request_url(suburl='/bank_statement') 
+    #     return self._handle_request('POST', url )
 
     
     def advance_bank_account(self , number:int=None,bank_code:str=None):
         """
         Verify bank account number
         
-        Args:
+        Params:
             number : bank account number
             bank_code : code of the user's bank
         Returns : 
@@ -153,7 +170,7 @@ class Verification(BaseConfig):
         """
         Verify bank account number
         
-        Args:
+        Params:
             number : bank account number
             bank_code : code of the user's bank
             customer_name : your customer name
@@ -174,7 +191,7 @@ class Verification(BaseConfig):
         """
         Verify voters card ID image
         
-        Args:
+        Params:
             image : voters card image(png,jpg, base64)
         Returns : 
             Json data from Prembly API.
@@ -188,7 +205,7 @@ class Verification(BaseConfig):
         """
         Verify voters card number
         
-        Args:
+        Params:
             number : voters card number
             state : state
             last_name : last name
@@ -210,7 +227,7 @@ class Verification(BaseConfig):
         """
         Verify drivers license
         
-        Args:
+        Params:
             number : license number
             dob : date of birth
             first_name : first name
@@ -236,7 +253,7 @@ class Verification(BaseConfig):
         """
         Verify drivers license
         
-        Args:
+        Params:
             number : license number
             dob : date of birth
             first_name : first name
@@ -260,7 +277,7 @@ class Verification(BaseConfig):
         """
         Verify drivers license ID image
         
-        Args:
+        Params:
             image : License image
         Returns : 
             Json data from Prembly API.
@@ -274,7 +291,7 @@ class Verification(BaseConfig):
         """
         Verify drivers license ID image
         
-        Args:
+        Params:
             number : FRSC number
             dob : date of birth
             image : image(png,jpg, base64)
@@ -291,7 +308,7 @@ class Verification(BaseConfig):
         """
         Verify international passport
         
-        Args:
+        Params:
             number : passport number
             last_name : user's last name
         Returns : 
@@ -307,7 +324,7 @@ class Verification(BaseConfig):
         """
         Verify international passport image 
         
-        Args:
+        Params:
             customer_reference : unique customer reference
             customer_name : customer name
             image : passport image(png,jpg, base64)
@@ -323,7 +340,7 @@ class Verification(BaseConfig):
         """
         Verify international passport image 
         
-        Args:
+        Params:
             last_name : user's last name
             number : passport number
             image :  image(png,jpg, base64)
@@ -340,7 +357,7 @@ class Verification(BaseConfig):
         Verify international passport in an asynchronous manner. The passport details will be verified and send later to your webhook url
         NOTE : configure your webhook URL before using this function
         
-        Args:
+        Params:
             last_name : user's last name
             number : passport number
         Returns : 
@@ -359,7 +376,7 @@ class Verification(BaseConfig):
         """
         Verify advance credit details of a user
         
-        Args:
+        Params:
             customer_reference : unique customer reference
             customer_name : customer name
             number : if model is ID(should be BVN)
@@ -384,7 +401,7 @@ class Verification(BaseConfig):
         """
         Verify advance credit details of a business
         
-        Args:
+        Params:
             rc_number : company RC number
             customer_name : customer  name
             customer_reference : unique customer reference
@@ -405,7 +422,7 @@ class Verification(BaseConfig):
         """
         Verify basic credit details of a business
         
-        Args:
+        Params:
             rc_number : company RC number
             customer_name : customer  name
         Returns : 
@@ -424,7 +441,7 @@ class Verification(BaseConfig):
         """
         Verify basic credit details of a business
         
-        Args:
+        Params:
             phone_number : Phone number
             first_name : first name
         Returns : 
@@ -443,7 +460,7 @@ class Verification(BaseConfig):
         """
         Verify a National Identification Number(NIN) Slip
         
-        Args:
+        Params:
             image : Nin slip image
         Returns : 
             Json data from Prembly API.
@@ -460,7 +477,7 @@ class Verification(BaseConfig):
         """
         Verify a National Identification Number(NIN) with phone number and (NIN) number
         
-        Args:
+        Params:
             number : Phone number used for nin registration
             number_nin : Nin registration number
         Returns : 
@@ -478,7 +495,7 @@ class Verification(BaseConfig):
         """
         Verify a National Identification Number(NIN) with NIN and virtual number
         
-        Args:
+        Params:
             number : Virtual nin number
             number_nin : Nin registration number
         Returns : 
@@ -502,7 +519,7 @@ class Verification(BaseConfig):
         """
         Verify a National Identification Number(NIN) with user's image
 
-        Args:
+        Params:
             number : Virtual nin number
             image : Image url 
         Returns : 

@@ -1,5 +1,5 @@
 import prembly
-
+from requests import RequestException , ConnectionError
 
 
 
@@ -26,3 +26,9 @@ class MissingRequiredDataError(PremblyException):
     Missing data error class
     """
     pass
+
+class APIConnectionError(PremblyException, ConnectionError):
+    """Summary."""
+
+    pass
+

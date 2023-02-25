@@ -1,13 +1,23 @@
-from prembly.base import BaseConfig
+from prembly.base import PremblyBase
 from prembly.utils import create_request_url
 
 
-class Verification(BaseConfig):
+class DataVerification(PremblyBase):
     """
     Base class for all IdentityPass API available in Kenya
     """
 
     def passport(self, number:int=None , customer_name:str=None , customer_reference:int=None):
+        """
+        Verify user passport
+        
+        Params:
+            number : passport number
+            customer_name : Customer name
+            customer_reference : Customer reference
+        Returns : 
+            Json data from Prembly API.
+        """
 
         data = {
             'number' :number,
@@ -19,7 +29,17 @@ class Verification(BaseConfig):
 
 
 
-    def drivers(self ,  number:int=None , customer_name:str=None , customer_reference:int=None):
+    def drivers_license(self ,  number:int=None , customer_name:str=None , customer_reference:int=None):
+        """
+        Verify user drivers license
+        
+        Params:
+            number : license number
+            customer_name : Customer name
+            customer_reference : Customer reference
+        Returns : 
+            Json data from Prembly API.
+        """
         data = {
             'number' :number,
             'customer_name': customer_name ,

@@ -1,8 +1,8 @@
-from prembly.base import BaseConfig
+from prembly.base import PremblyBase
 from prembly.utils import create_request_url
 
 
-class Verification(BaseConfig):
+class DataVerification(PremblyBase):
     """
     Base class for all IdentityPass API available in Sierra Leone
     """
@@ -15,7 +15,7 @@ class Verification(BaseConfig):
         """
         Verify user voters card
         
-        Args:
+        Params:
             search_mode : mode [ ID or BIO] default ID
             number : ID number [ if search_mode is ID ]
             firstname : user first name[ if search_mode is BIO]
@@ -44,7 +44,7 @@ class Verification(BaseConfig):
         """
         Verify user voters card
         
-        Args:
+        Params:
             search_mode : mode [ ID or BIO] default ID
             number : ID number [ if search_mode is ID ]
             firstname : user first name[ if search_mode is BIO]

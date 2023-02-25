@@ -1,8 +1,8 @@
-from prembly.base import BaseConfig
+from prembly.base import PremblyBase
 from prembly.utils import create_request_url
 
 
-class Verification(BaseConfig):
+class DataVerification(PremblyBase):
     """
     Base class for all IdentityPass API available in Uganda
     """

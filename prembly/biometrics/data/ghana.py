@@ -1,8 +1,8 @@
-from prembly.base import BaseConfig
+from prembly.base import PremblyBase
 from prembly.utils import create_request_url
 
 
-class Verification(BaseConfig):
+class DataVerification(PremblyBase):
     """
     Base class for all IdentityPass API available in Ghana
     """
@@ -10,9 +10,9 @@ class Verification(BaseConfig):
 
     def drivers_license(self ,  number  , dob:str=None):
         """
-        Verify user passport
+        Verify user drivers license
         
-        Args:
+        Params:
             number : License number
             dob : date of birth[yyyy-mm-dd]
         Returns : 
@@ -28,9 +28,9 @@ class Verification(BaseConfig):
 
     def ssnit(self ,  number  ):
         """
-        Verify user passport
+        Verify user SSNIT
         
-        Args:
+        Params:
             number : SSNIT number
         Returns : 
             Json data from Prembly API.
@@ -46,7 +46,7 @@ class Verification(BaseConfig):
         """
         Verify voters card
         
-        Args:
+        Params:
             number : Voters card number
             type :  Voters card type [ MAIN or OLD ] default MAIN
         Returns : 
@@ -64,7 +64,7 @@ class Verification(BaseConfig):
         """
         Verify user passport
         number : Passport number
-        Args:
+        Params:
             number : Passport number
         Returns : 
             Json data from Prembly API.
