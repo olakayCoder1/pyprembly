@@ -1,6 +1,12 @@
+"""
+Premby API wrapper.
+
+@author Olanrewaju Kabiru.
+
+"""
 from prembly.base import PremblyBase
 from prembly.exceptions import *
-from prembly.utils import create_request_url
+from prembly.utils import create_request_url , image_to_base64
 
 
 
@@ -76,7 +82,7 @@ class DataVerification(PremblyBase):
         return self._handle_request('POST', url , data=data)
 
 
-    def bvn_with_face(self, number: int = None , image: str = None ):
+    def bvn_with_face(self, number: int = None , image= None ):
         """
         Verify a Bank Verification Number (BVN) using image and number
        
@@ -86,6 +92,8 @@ class DataVerification(PremblyBase):
         Returns : 
             Json data from Prembly API.
         """
+        if image:
+            image = image_to_base64(image)
         data = { 'image': image , 'number': number  }
         url = self.create_request_url(suburl='/bvn_w_face') 
         return self._handle_request('POST', url , data=data)
@@ -130,6 +138,28 @@ class DataVerification(PremblyBase):
             }
         url = self.create_request_url(suburl='/bank_account') 
         return self._handle_request('POST', url , data=data )
+
+
+
+    def bank_account_comparison(self , number:int=None,bank_code:str=None , customer_name:str=None, customer_reference:str=None):
+        """
+        Verify bank account number and compare name with customer name
+        
+        Params:
+            number : bank account number
+            bank_code : code of the user's bank
+            customer_name : customer name
+            customer_reference : customer reference
+        Returns : 
+            Json data from Prembly API.
+        """
+        data = {
+                'bank_code': bank_code ,  'number': number ,
+                'customer_reference': customer_reference,
+                 'customer_name':customer_name
+            }
+        url = self.create_request_url(suburl='/bank_account/comparism') 
+        return self._handle_request('POST', url , data=data )
     
 
 
@@ -164,30 +194,30 @@ class DataVerification(PremblyBase):
         return self._handle_request('POST', url , data=data )
 
 
-    def bank_account_with_name(
-        self , number:int=None,bank_code:str=None , 
-        customer_name:str=None , customer_reference:str=None):
-        """
-        Verify bank account number
+    # def bank_account_with_name(
+    #     self , number:int=None,bank_code:str=None , 
+    #     customer_name:str=None , customer_reference:str=None):
+    #     """
+    #     Verify bank account number
         
-        Params:
-            number : bank account number
-            bank_code : code of the user's bank
-            customer_name : your customer name
-            customer_reference : your customer reference
-        Returns : 
-            Json data from Prembly API.
-        """
-        data = {'bank_code': bank_code ,  'number': number ,
-                 'customer_reference': customer_reference,
-                 'customer_name':customer_name
-                }
-        url = self.create_request_url(suburl='/bank_account/comparism') 
-        return self._handle_request('POST', url , data=data )
+    #     Params:
+    #         number : bank account number
+    #         bank_code : code of the user's bank
+    #         customer_name : your customer name
+    #         customer_reference : your customer reference
+    #     Returns : 
+    #         Json data from Prembly API.
+    #     """
+    #     data = {'bank_code': bank_code ,  'number': number ,
+    #              'customer_reference': customer_reference,
+    #              'customer_name':customer_name
+    #             }
+    #     url = self.create_request_url(suburl='/bank_account/comparism') 
+    #     return self._handle_request('POST', url , data=data )
 
 
 
-    def voters_card_image(self , image:str=None):
+    def voters_card_image(self , image=None):
         """
         Verify voters card ID image
         
@@ -196,6 +226,8 @@ class DataVerification(PremblyBase):
         Returns : 
             Json data from Prembly API.
         """
+        if image:
+            image = image_to_base64(image)
         data = {'image': image }
         url = self.create_request_url(suburl='/voters_card/image') 
         return self._handle_request('POST', url , data=data )
@@ -505,7 +537,7 @@ class DataVerification(PremblyBase):
             Where until now, the raw NIN had been shared and stored by various entities mostly without the knowledge (or consent) of the ID Holder or the Custodian of Identity in Nigeria, the NIMC.\n
             Virtual NIN consists of 16 alpha-numeric characters that can be generated using:\n
             NIMC official mobile app\n
-            USSD - _346_3_customer NIN_696739#\n
+            USSD - *346*3*customer NIN*696739#\n
             Identitypass Short Code: 696739
             
         """
@@ -529,7 +561,64 @@ class DataVerification(PremblyBase):
         # image = open('image','rb').read()
         # data.update({'image': image} ) 
             
-        url = create_request_url(subsuburl='/biometrics/merchant/data/verification/nin') 
+        url = self.create_request_url(subsuburl='/nin') 
+        return self._handle_request('POST', url , data=data)
+
+
+
+    def stamp_duty(self, number=None , customer_name: str =None, customer_reference:str=None) :
+        """
+        Verify a stamp  duty reference number
+
+        Params:
+            number : stamp duty number
+            customer_name : Customer name
+            customer_reference : unique customer reference
+        Returns : 
+            Json data from Prembly API.
+        """
+        data = {'number': number , 'customer_name': customer_name, 'customer_reference':customer_reference}
+        # image = open('image','rb').read()
+        # data.update({'image': image} ) 
+            
+        url = create_request_url(subsuburl='/stamp_duty') 
+        return self._handle_request('POST', url , data=data)
+
+
+
+
+    def plate_number(self, vehicle_number=None ) :
+        """
+        Verify a vehicle number plate
+
+        Params:
+            vehicle_number : vehicle number 
+        Returns : 
+            Json data from Prembly API.
+        """
+        # test data : AAA000000
+        data = {'vehicle_number': vehicle_number}
+     
+            
+        url = create_request_url(subsuburl='/vehicle') 
+        return self._handle_request('POST', url , data=data)
+    
+
+    def tax_identification_number(self, number=None , channel='TIN' ) :
+        """
+        Verify tax identification number
+
+        Params:
+            number : TIN or RC number or Phone number 
+            channel : TIN,CAC,or Phone ( default :TIN) 
+        Returns : 
+            Json data from Prembly API.
+        """
+        # test data : AAA000000
+        data = {'number': number , 'channel':channel}
+     
+            
+        url = create_request_url(subsuburl='/tin') 
         return self._handle_request('POST', url , data=data)
 
 

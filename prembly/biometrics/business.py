@@ -1,6 +1,67 @@
+"""
+Premby API wrapper.
+
+@author Olanrewaju Kabiru.
+
+"""
 from prembly.base import PremblyBase
 from prembly.utils import create_request_url , image_to_base64
 from prembly.exceptions import MissingRequiredDataError
+
+class DataVerification(PremblyBase):
+
+    def email_verification(self , email ):
+        """
+        Verify an email address
+         
+        Params:
+            email :  email address  
+        Returns : 
+            Json data from Prembly API.
+        """
+        data = {
+            'email' :email,
+        }
+        url = self.create_request_url(suburl='/emailage') 
+        return self._handle_request('POST', url , data=data)
+
+
+
+    def card_bin_verification(self , number ):
+        """
+        Verify a card BIN (Bank Identification Number) 
+         
+        Params:
+            number :  card bin number  
+        Returns : 
+            Json data from Prembly API.
+        """
+        data = {
+            'number' :number,
+        }
+        url = self.create_request_url(suburl='/card_bin') 
+        return self._handle_request('POST', url , data=data)
+
+
+
+    def vin_verification(self , vin ):
+        """
+        Verify a VIN/CAR Identification Number 
+         
+        Params:
+            vin :  VIN identification number  
+        Returns : 
+            Json data from Prembly API.
+        """
+        data = {
+            'vin' :vin,
+        }
+        url = self.create_request_url(suburl='/vehicle/vin') 
+        return self._handle_request('POST', url , data=data)
+    
+    
+
+
 
 
 class DataSearch(PremblyBase):
@@ -22,54 +83,6 @@ class DataSearch(PremblyBase):
     
 
 
-    def email_verification(self , email ):
-        """
-        Verify an email address
-         
-        Params:
-            email :  email address  
-        Returns : 
-            Json data from Prembly API.
-        """
-        data = {
-            'email' :email,
-        }
-        url = self.create_request_url(suburl='/emailage') 
-        return self._handle_request('POST', url , data=data)
-    
-
-    def card_bin_verification(self , number ):
-        """
-        Verify a card BIN (Bank Identification Number) 
-         
-        Params:
-            number :  card bin number  
-        Returns : 
-            Json data from Prembly API.
-        """
-        data = {
-            'number' :number,
-        }
-        url = self.create_request_url(suburl='/card_bin') 
-        return self._handle_request('POST', url , data=data)
-    
-
-
-    def vin_verification(self , vin ):
-        """
-        Verify a VIN/CAR Identification Number 
-         
-        Params:
-            vin :  VIN identification number  
-        Returns : 
-            Json data from Prembly API.
-        """
-        data = {
-            'vin' :vin,
-        }
-        url = self.create_request_url(suburl='/vehicle/vin') 
-        return self._handle_request('POST', url , data=data)
-    
 
     def search_interpol_ban_list(self , search_mode='NAME' , image = None , name:str=None):
         """

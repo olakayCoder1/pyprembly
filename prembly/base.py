@@ -33,9 +33,11 @@ class PremblyBase(object):
         self._API_URL_BASE = self._BASE_END_POINT + self._API_VERSION + '/biometrics/merchant/data/verification'
 
 
+        # if the app id is provided in the initialization , set the _PREMBLY_APP_ID to the provided value
         if prembly_app_id:
             self._PREMBLY_APP_ID = prembly_app_id
         else:
+            # get the PREMBLY_APP_ID from the environment variable
             self._PREMBLY_APP_ID = PremblyConfiguration.PREMBLY_APP_ID  
 
         if self._PREMBLY_APP_ID is None:
@@ -48,9 +50,11 @@ class PremblyBase(object):
             )
 
 
+        # if the app id is provided in the initialization , set the _PREMBLY_X_API_KEY to the provided value
         if prembly_app_id:
             self._PREMBLY_X_API_KEY = prembly_x_api_key
         else:
+            # get the PREMBLY_X_API_KEY from the environment variable
             self._PREMBLY_X_API_KEY = PremblyConfiguration.PREMBLY_X_API_KEY
 
 
@@ -139,7 +143,7 @@ class PremblyBase(object):
                    "If this problem persists, let me know at "
                    "programmerolakay@gmail.com.")
 
-        else:  # pragma: no cover
+        else:  
             msg = ("Unexpected error communicating with Prembly. "
                    "It looks like there's probably a configuration "
                    "issue locally.  If this problem persists, let me "

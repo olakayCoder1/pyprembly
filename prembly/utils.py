@@ -3,10 +3,20 @@ import base64
 import requests
 from PIL import Image
 import io
+import json
+from cryptography.hazmat.primitives.asymmetric import padding , rsa
+from cryptography.hazmat.primitives import serialization , hashes
+
+
+
+
+
+
 
 def image_to_base64(image_path):
     """
-    Convert an image to base64, regardless of whether the image is passed as a URL or file path and regardless of its format
+    Convert an image to base64, regardless of whether 
+    the image is passed as a URL or file path and regardless of its format
 
     Params:
          image_path: image location
@@ -43,4 +53,42 @@ def create_request_url(**kwargs):
     return "{}".format(url)
         
 
+
+
+def encrypt_info(data):
+    #  Generate a new RSA key pair
+    private_key = rsa.generate_private_key(
+        public_exponent=65537,
+        key_size=2048
+    )
+    #  Get the public key in PEM format
+    public_key = private_key.public_key().public_bytes(
+        encoding=serialization.Encoding.PEM,
+        format=serialization.PublicFormat.SubjectPublicKeyInfo
+    )
+    # Define the message to encrypt
+    if isinstance(data, dict):
+        message = data
+    else:
+        return None
+    # message = {
+    #     'username': '',
+    #     'password' : '',
+    #     'auth_method':'internet_banking',
+    #     'institution': ''
+    # }
+    # Convert the message to byte and serialize as JSON
+    message_bytes = json.dumps(message).encode()
+
+    # Encrypt the message to bytes and serialize as JSON
+    ciphertext = public_key.encrypt(
+        message_bytes,
+        padding.OAEP(
+        mgf=padding.MGF1(algorithm=hashes.SHA256()),
+        algorithm=hashes.SHA256(),
+        label=None
+        )
+    )
+
+    return ciphertext
 
