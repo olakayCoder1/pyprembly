@@ -7,7 +7,12 @@ class DataVerification(PremblyBase):
     Base class for all IdentityPass API available in Kenya
     """
 
-    def passport(self, number:int=None , customer_name:str=None , customer_reference:int=None):
+    def passport(
+            self, 
+            number:int=None , 
+            customer_name:str=None , 
+            customer_reference:int=None
+            ):
         """
         Verify user passport
         
@@ -29,7 +34,12 @@ class DataVerification(PremblyBase):
 
 
 
-    def drivers_license(self ,  number:int=None , customer_name:str=None , customer_reference:int=None):
+    def drivers_license(
+            self ,  
+            number:int=None ,
+            customer_name:str=None , 
+            customer_reference:int=None
+            ):
         """
         Verify user drivers license
         

@@ -142,7 +142,11 @@ class PremblyBase(object):
             msg = ("Unexpected error communicating with Prembly.  "
                    "If this problem persists, let me know at "
                    "programmerolakay@gmail.com.")
-
+        elif isinstance(e, requests.exceptions.ConnectionError ):
+            msg = ("Unexpected error communicating with Prembly. "
+                   "It looks like there's probably a configuration "
+                   "issue locally.  If this problem persists, let me "
+                   "know at programmerolakay@gmail.com.")
         else:  
             msg = ("Unexpected error communicating with Prembly. "
                    "It looks like there's probably a configuration "

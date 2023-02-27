@@ -7,7 +7,10 @@ class DataVerification(PremblyBase):
     Base class for all IdentityPass API available in Uganda
     """
 
-    def company(self, reservation_number:int=None ):
+    def company(
+            self, 
+            reservation_number:int=None 
+            ):
 
         data = {
             'number' :reservation_number,

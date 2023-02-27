@@ -7,7 +7,13 @@ class DataVerification(PremblyBase):
     Base class for all IdentityPass API available in South Africa
     """
 
-    def national_id(self , firstname:str=None, lastname:str= None , nationalid:str=None , dob:str=None):
+    def national_id(
+            self , 
+            firstname:str=None, 
+            lastname:str= None , 
+            nationalid:str=None , 
+            dob:str=None
+            ):
         """
         Verify user national id card
         

@@ -6,7 +6,6 @@ class RadarVerification(PremblyBase):
     """
     
     """
-
     def _radar_base_endpoint(self):
         return 'https://radarapi.myidentitypass.com/intelligence'
     

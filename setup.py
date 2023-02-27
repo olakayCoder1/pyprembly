@@ -1,6 +1,24 @@
 from setuptools import setup, find_packages
+from codecs import open
+import os
+
+
+here = os.path.abspath(os.path.dirname(__file__))
+
+os.chdir(here)
+
+with open(
+    os.path.join(here, "LONG_DESCRIPTION.rst"), "r", encoding="utf-8"
+) as fp:
+    long_description = fp.read()
 
 setup(
     name = 'prembly',
-    packages = find_packages(),
+    packages = find_packages(exclude=["tests", "tests.*"]), 
+    description="Python bindings for the Prembly IdentityPass API",
+    long_description=long_description,
+    long_description_content_type="text/x-rst",
+    author="Olanrewaju Kabiru",
+    author_email="programmerolakay@gmail.com",
+    url="https://github.com/olakayCoder1/olakay-pyprembly",
 )

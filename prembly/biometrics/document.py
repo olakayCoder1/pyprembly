@@ -1,20 +1,26 @@
 from prembly.base import PremblyBase
-
+from prembly.utils import image_to_base64
 class DocumentVerification(PremblyBase):
 
 
-    def verify(self , doct_country:str=None, doc_type:str=None , doc_image:str=None):
+    def verify(
+            self ,
+            doc_image, 
+            doct_country:str=None, 
+            doc_type:str=None ,
+            ):
         """
         Verify document image
         
         Params:
             doct_country : Document country code 
             doc_type : Document type - Passport(PP)|Driver's License(DL)|Government Issue Identity Card(ID)|Resident Permit (RP)|Utility Bill(UB) 
-            doc_type : Base 64 encoding of document image
+            doc_image : document image
         Returns : 
             Json data from Prembly API.
         """
-
+        if doc_image:
+            doc_image = image_to_base64(doc_image) 
         data = {
             'doct_country': doct_country,
             'doc_image' : doc_image,
