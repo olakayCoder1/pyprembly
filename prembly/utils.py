@@ -6,7 +6,7 @@ import io
 import json
 from cryptography.hazmat.primitives.asymmetric import padding , rsa
 from cryptography.hazmat.primitives import serialization , hashes
-
+import binascii
 
 
 
@@ -31,6 +31,24 @@ def image_to_base64(image_path):
     encoded_string = base64.b64encode(image.tobytes())
 
     return encoded_string
+
+
+
+
+
+
+def is_base64_image(image):
+    """
+    Check if image is in base64 format else convert it to base64
+    """
+    try:
+        # check if image is already in base64 format
+        base64.b64decode(image)
+        return image
+    except:
+        # if image is not in base64 format, try to encode it
+        return image_to_base64(image)
+
 
 
 

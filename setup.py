@@ -20,5 +20,5 @@ setup(
     long_description_content_type="text/x-rst",
     author="Olanrewaju Kabiru",
     author_email="programmerolakay@gmail.com",
-    url="https://github.com/olakayCoder1/olakay-pyprembly",
+    url="https://github.com/olakayCoder1/pyprembly-sdk",
 )

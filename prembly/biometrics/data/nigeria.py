@@ -6,7 +6,7 @@ Premby API wrapper.
 """
 from prembly.base import PremblyBase
 from prembly.exceptions import *
-from prembly.utils import create_request_url , image_to_base64
+from prembly.utils import is_base64_image
 
 
 
@@ -51,8 +51,7 @@ class DataVerification(PremblyBase):
             'company_type': company_name ,
             'company_name': company_name
             }
-        verify_url = self._BASE_END_POINT_VERSION + '/cac_w_name'
-        url = self.create_request_url(suburl=verify_url) 
+        url = self.create_request_url(suburl='/cac_w_name') 
         return self._handle_request('POST', url , data=data)
 
 
@@ -113,7 +112,7 @@ class DataVerification(PremblyBase):
             Json data from Prembly API.
         """
         if image:
-            image = image_to_base64(image)
+            image =is_base64_image(image)
         data = { 'image': image , 'number': number  }
         url = self.create_request_url(suburl='/bvn_w_face') 
         return self._handle_request('POST', url , data=data)
@@ -258,7 +257,7 @@ class DataVerification(PremblyBase):
             Json data from Prembly API.
         """
         if image:
-            image = image_to_base64(image)
+            image =is_base64_image(image)
         data = {'image': image }
         url = self.create_request_url(suburl='/voters_card/image') 
         return self._handle_request('POST', url , data=data )
@@ -368,7 +367,7 @@ class DataVerification(PremblyBase):
             Json data from Prembly API.
         """ 
         if image:
-            image = image_to_base64(image)        
+            image =is_base64_image(image)        
         data  = {'image' : image }
         url = self.create_request_url(suburl='/drivers_license/image') 
         return self._handle_request('POST', url , data=data )
@@ -391,7 +390,7 @@ class DataVerification(PremblyBase):
             Json data from Prembly API.
         """   
         if image:
-            image = image_to_base64(image)      
+            image =is_base64_image(image)      
         data  = {
             'image' : image , 
             'number': number , 
@@ -437,7 +436,7 @@ class DataVerification(PremblyBase):
             Json data from Prembly API.
         """ 
         if image:
-            image = image_to_base64(image)        
+            image =is_base64_image(image)        
         data  = { 
             'image': image , 
             'customer_reference' : customer_reference,
@@ -463,7 +462,7 @@ class DataVerification(PremblyBase):
             Json data from Prembly API.
         """ 
         if image:
-            image = image_to_base64(image)       
+            image =is_base64_image(image)       
         data  = { 
             'image': image , 
             'last_name' : last_name,
@@ -603,7 +602,7 @@ class DataVerification(PremblyBase):
             Json data from Prembly API.
         """
         if image:
-            image = image_to_base64(image)
+            image = is_base64_image(image)
         url = self.create_request_url(suburl='/nin/image') 
         return self._handle_request('POST', url , data={ 'image' : image})
 
@@ -676,9 +675,9 @@ class DataVerification(PremblyBase):
             Json data from Prembly API.
         """
         if image:
-            image = image_to_base64(image)
+            image =is_base64_image(image)
         data = {'number': number , 'image': image}
-        url = self.create_request_url(subsuburl='/nin') 
+        url = self.create_request_url(suburl='/nin') 
         return self._handle_request('POST', url , data=data)
 
 
@@ -705,13 +704,13 @@ class DataVerification(PremblyBase):
             'customer_reference':customer_reference
             }
             
-        url = create_request_url(subsuburl='/stamp_duty') 
+        url = self.create_request_url(suburl='/stamp_duty') 
         return self._handle_request('POST', url , data=data)
 
 
 
 
-    def plate_number(self, vehicle_number=None ) :
+    def vehicle_verification(self, vehicle_number=None ) :
         """
         Verify a vehicle number plate
 
@@ -722,7 +721,7 @@ class DataVerification(PremblyBase):
         """
         # test data : AAA000000
         data = {'vehicle_number': vehicle_number}            
-        url = create_request_url(subsuburl='/vehicle') 
+        url = self.create_request_url(suburl='/vehicle') 
         return self._handle_request('POST', url , data=data)
     
 
@@ -741,7 +740,7 @@ class DataVerification(PremblyBase):
             'number': number , 
             'channel':channel
             }
-        url = create_request_url(subsuburl='/tin') 
+        url = self.create_request_url(suburl='/tin') 
         return self._handle_request('POST', url , data=data)
 
 

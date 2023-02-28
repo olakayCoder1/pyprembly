@@ -23,14 +23,12 @@ class PremblyBase(object):
     def __init__( 
         self, prembly_app_id: str = None , 
         prembly_x_api_key : str = None , 
-        api_version: str ='v1' , 
+        api_version: str ='v2' , 
         environment : str ='sandbox', 
-        country_code : str = 'NGN' 
         ):
-
         self._BASE_END_POINT = PremblyConfiguration.BASE_END_POINT_DICTIONARY.get( environment )
         self._API_VERSION = api_version
-        self._API_URL_BASE = self._BASE_END_POINT + self._API_VERSION + '/biometrics/merchant/data/verification'
+        self._API_URL_BASE = self._BASE_END_POINT + '/api/' + self._API_VERSION + '/biometrics/merchant/data/verification'
 
 
         # if the app id is provided in the initialization , set the _PREMBLY_APP_ID to the provided value
@@ -79,7 +77,7 @@ class PremblyBase(object):
 
 
     
-    def create_request_url(self , **kwargs):
+    def create_request_url(self , suburl=None , params={}):
         """
         Add query params to the url, the kwargs should include suburl, params eg
 
@@ -89,20 +87,15 @@ class PremblyBase(object):
                 'number' : '09082455489',
             }\n
         create_params(url=url , params=json.dumps(params))
-
-        Result : 
-            assuming base url is https://sandbox.myidentitypass.com/biometrics/merchant/data/verification
-            https://sandbox.myidentitypass.com/biometrics/merchant/data/verification/credit_bureau/commercial/basic?number=09082455489
         """
-        suburl = kwargs.get('suburl')
-        params = kwargs.get('params')
-        if params:
+        suburl = suburl
+        if bool(params):
             query_string = urlencode(eval(params))
-            return "{}?{}".format(self._API_URL_BASE , suburl,query_string)
-        return "{}".format(self._API_URL_BASE , suburl  )
+            return "{}{}?{}".format(self._API_URL_BASE , suburl,query_string)
+        return "{}{}".format(self._API_URL_BASE , suburl  )
 
 
-    def _handle_request(self, method, url, data=None):
+    def _handle_request(self, method, url , data=None):
         """
         Generic function to handle all API url calls
         Args:
@@ -120,12 +113,12 @@ class PremblyBase(object):
             'GET': requests.get,
             'POST': requests.post,
         }
-
         payload = json.dumps(data) if data else data
         request = method_dict.get(method)
 
         if not request:
             raise InvalidMethodError("Request method not recognized or implemented")
+        response = request(url, headers=self._headers(), data=payload)
 
         try:
             response = request(url, headers=self._headers(), data=payload)
@@ -133,7 +126,7 @@ class PremblyBase(object):
             # Would catch just requests.exceptions.RequestException, but can
             # also raise ValueError, RuntimeError, etc.
             self._handle_request_error(e)
-        return response
+        return json.loads(response.text)
         
 
 
