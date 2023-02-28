@@ -11,6 +11,135 @@ class TestNin(TestCase):
         self.Verification = DataVerification()
 
 
+
+    def test_cac(self):
+        response = self.Verification.cac(
+            rc_number='092932',
+            company_type='RC'
+        )
+        self.assertEqual(response['detail'], "Verification Successful")
+
+
+
+    def test_cac_advance(self):
+        response = self.Verification.cac_advance(
+            company_name='TEST COMPANY',
+            company_type='RC',
+            rc_number='092932'
+        )
+        self.assertEqual(response['detail'], "Verification Successful")
+
+
+    def test_cac_with_name(self):
+        response = self.Verification.cac_with_name(
+            company_name='TEST COMPANY'
+        )
+        self.assertEqual(response['detail'], "Verification Successful")
+
+
+    def test_phone_number(self):
+        response = self.Verification.phone_number(
+            number='08082838283'
+        )
+        self.assertEqual(response['detail'], "Verification Successful")
+
+
+    def test_banks_code(self):
+        response = self.Verification.banks_code()
+        self.assertEqual(response['detail'], "Verification Successful")
+
+    def test_bank_account(self):
+        response= self.Verification.bank_account(
+            number=4444444444,
+            bank_code=214
+        )
+        self.assertEqual(response['detail'], "Verification Successful")
+        
+    
+    def test_voters_card_lookup(self):
+        response = self.Verification.voters_card_lookup(
+            number= '987f545AJ67890',
+            last_name= 'test' ,
+            state= 'Lagos'
+        )
+        self.assertEqual(response['detail'], "Verification Successful")
+
+    def test_basic_drivers_license(self):
+        response = self.Verification.basic_drivers_license(
+            number='AAD23208212298',
+            dob='1999-12-21',
+            first_name='test',
+            last_name='test'
+        )
+        self.assertEqual(response['detail'], "Verification Successful")
+
+
+    def test_advance_drivers_license(self):
+        response = self.Verification.advance_drivers_license(
+            number='AAD23208212298',
+            dob='1999-12-21',
+            first_name='test',
+            last_name='test'
+        )
+        self.assertEqual(response['detail'], "Verification Successful")
+
+    def test_drivers_license_image(self):
+        response = self.Verification.drivers_license_image(
+            image='https://res.cloudinary.com/dh3i1wodq/image/upload/v1675417496/cbimage_3_drqdoc.jpg',
+            number='AAD23208212298',
+            dob='1999-12-21'
+        )
+        self.assertEqual(response['detail'], "Verification Successful")
+
+
+    def test_international_passport(self):
+        response = self.Verification.international_passport(
+            number='A00400000',
+            last_name='test'
+        )
+        self.assertEqual(response['detail'], "Verification Successful")
+
+
+    def test_credit_bureau(self):
+        response = self.Verification.credit_bureau(
+            customer_name= 'Test Name',
+            mode='ID',
+            number='22222222222',
+            dob='1990-08-01'
+        )
+        self.assertEqual(response['detail'], "Verification Successful")
+
+
+    def test_credit_bureau_customer(self):
+        response = self.Verification.credit_bureau_customer(
+            customer_name= 'Test Name',
+            mode='ID',
+            number='11111111111',
+            dob='1990-08-01'
+        )
+        self.assertEqual(response['detail'], "Verification Successful")
+
+
+    def test_credit_bureau_commercial_basic(self):
+        response = self.Verification.credit_bureau_commercial_basic(
+            customer_name='Test Name',
+            rc_number='59002'
+        )
+        self.assertEqual(response['detail'], "Verification Successful")
+
+
+
+    def test_credit_bureau_commercial(self):
+        response = self.Verification.credit_bureau_commercial(
+            customer_name='Test Name',
+            rc_number='59001'
+        )
+        self.assertEqual(response['detail'], "Verification Successful")
+
+
+
+
+
     def test_nin_slip(self):
         response = self.Verification.nin_slip(image='https://asset.cloudinary.com/dh3i1wodq/089761016db6dab086ca450bf2465898')
         self.assertEqual(response['detail'], "Verification Successful")
@@ -48,7 +177,6 @@ class TestNin(TestCase):
     def test_nin_lookup(self, mock_data ):
         mock_data.return_value = {'foo':'bar'}
         response = self.Verification.nin_lookup(self.number,self.number_nin)
-        # print(response)
         self.assertEqual(response['foo'] , 'bar')
 
 

@@ -30,6 +30,8 @@ class DataVerification(PremblyBase):
         Returns : 
             Json data from Prembly API.
         """
+        # rc_number: 092932
+        # company_name: TEST COMPANY
         data = {
             'company_type': company_type , 
             'rc_number': rc_number
@@ -47,6 +49,7 @@ class DataVerification(PremblyBase):
         Returns : 
             Json data from Prembly API.
         """
+        # company_name: TEST COMPANY
         data = {
             'company_type': company_name ,
             'company_name': company_name
@@ -73,8 +76,9 @@ class DataVerification(PremblyBase):
         Returns : 
             Json data from Prembly API.
         """
-        # 092932
-        # TEST COMPANY
+        # rc_number: 092932
+        # company_name: TEST COMPANY
+        # company_type: RC
         data = {
             'company_type': company_type , 
             'rc_number': rc_number , 
@@ -118,7 +122,7 @@ class DataVerification(PremblyBase):
         return self._handle_request('POST', url , data=data)
 
     
-    def phone_number(self, number: int = None , v_type:str='normal'):
+    def phone_number(self, number  , v_type='normal'):
         """
         Verify a Phone Number
         
@@ -129,6 +133,7 @@ class DataVerification(PremblyBase):
         Returns : 
             Json data from Prembly API.
         """
+        # number: 08082838283
         data = {'number': number }
         url = self.create_request_url(suburl='/phone_number') 
         return self._handle_request('POST', url , data=data)
@@ -155,6 +160,8 @@ class DataVerification(PremblyBase):
         Returns : 
             Json data from Prembly API.
         """
+            # number: 4444444444
+            # bank_code: 214
         data = {
                 'bank_code': bank_code ,  
                 'number': number
@@ -265,9 +272,9 @@ class DataVerification(PremblyBase):
     
     def voters_card_lookup(
             self , 
-            number:int=None , 
-            state:str=None , 
-            last_name:str=None
+            number=None , 
+            state=None , 
+            last_name=None
             ):
         """
         Verify voters card number
@@ -279,9 +286,9 @@ class DataVerification(PremblyBase):
         Returns : 
             Json data from Prembly API.
         """
-        #987f545AJ67890
-        #test
-        #Lagos
+        # number: 987f545AJ67890
+        # last_name: test 
+        # state: Lagos
         data = { 
             'number': number , 
             'state': state , 
@@ -304,7 +311,7 @@ class DataVerification(PremblyBase):
         
         Params:
             number : license number
-            dob : date of birth
+            dob : date of birth ( eg 1999-12-21)
             first_name : first name
             last_name : last name
         Returns : 
@@ -373,7 +380,7 @@ class DataVerification(PremblyBase):
         return self._handle_request('POST', url , data=data )
 
 
-    def image_drivers_license_verification(
+    def drivers_license_image(
             self , 
             image,
             number:int=None,  
@@ -410,7 +417,9 @@ class DataVerification(PremblyBase):
             last_name : user's last name
         Returns : 
             Json data from Prembly API.
-        """        
+        """
+        # number: A00400000
+        # last_name: test        
         data  = { 
             'number': number , 
             'last_name' : last_name
@@ -500,6 +509,41 @@ class DataVerification(PremblyBase):
     def credit_bureau(
         self, 
         customer_reference, 
+        customer_name=None , 
+        number=None, 
+        mode=None , 
+        dob=None
+        ):
+        """
+        Verify advance credit details of a user
+        
+        Params:
+            customer_reference : unique customer reference
+            customer_name : customer name
+            number : if model is ID(should be BVN)
+            dob : if model is BIO(Date of birth)
+            mode : either ID or BVN
+        Returns : 
+            Json data from Prembly API.
+        """    
+        data  = { 
+            'customer_name' : customer_name, 
+            'customer_reference' : customer_reference ,
+            'number' : number,  
+            'dob': dob  , 
+            'mode' : mode
+        }
+        url = self.create_request_url(suburl='/credit_bureau') 
+        return self._handle_request('POST', url , data=data )
+
+
+
+
+        
+    
+    def credit_bureau_customer(
+        self, 
+        customer_reference, 
         customer_name:str=None , 
         number:int=None, 
         mode:str=None , 
@@ -516,7 +560,7 @@ class DataVerification(PremblyBase):
             mode : either ID or BVN
         Returns : 
             Json data from Prembly API.
-        """        
+        """       
         data  = { 
             'customer_name' : customer_name, 
             'customer_reference' : customer_reference ,
@@ -524,15 +568,15 @@ class DataVerification(PremblyBase):
             'dob': dob  , 
             'mode' : mode
         }
-        url = self.create_request_url(suburl='/credit_bureau/customer/advance') 
+        url = self.create_request_url(suburl='/credit_bureau/customer/basic') 
         return self._handle_request('POST', url , data=data )
 
     
     def credit_bureau_commercial(
         self, 
         customer_reference, 
-        customer_name:str=None , 
-        rc_number:int=None
+        customer_name=None , 
+        rc_number=None
         ):
         """
         Verify advance credit details of a business
@@ -543,7 +587,7 @@ class DataVerification(PremblyBase):
             customer_reference : unique customer reference
         Returns : 
             Json data from Prembly API.
-        """        
+        """      
         data  = { 
             'customer_name' : customer_name, 
             'customer_reference' : customer_reference ,
@@ -554,7 +598,7 @@ class DataVerification(PremblyBase):
 
 
     def credit_bureau_commercial_basic(
-        self,customer_name:str=None , rc_number:int=None ):
+        self,customer_name=None , rc_number=None ):
         """
         Verify basic credit details of a business
         
@@ -563,7 +607,9 @@ class DataVerification(PremblyBase):
             customer_name : customer  name
         Returns : 
             Json data from Prembly API.
-        """        
+        """   
+        # customer_name: Test Name 
+        # rc_number: 59002     
         data  = { 
             'customer_name' : customer_name, 
             'rc_number' : rc_number
