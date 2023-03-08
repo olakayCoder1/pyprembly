@@ -1,5 +1,4 @@
 from prembly.base import PremblyBase
-from prembly.utils import create_request_url
 
 
 class DataVerification(PremblyBase):

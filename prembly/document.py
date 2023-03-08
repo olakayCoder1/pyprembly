@@ -1,6 +1,9 @@
 from prembly.base import PremblyBase
 from prembly.utils import image_to_base64
-class DocumentVerification(PremblyBase):
+
+
+
+class DataVerification(PremblyBase):
 
 
     def verify(

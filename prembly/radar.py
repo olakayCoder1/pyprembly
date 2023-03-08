@@ -2,18 +2,18 @@
 from prembly.base import PremblyBase
 
 
-class RadarVerification(PremblyBase):
+class DataVerification(PremblyBase):
     """
     
     """
     def _radar_base_endpoint(self):
         return 'https://radarapi.myidentitypass.com/intelligence'
     
-
     
     def phone_intelligence(self, phone_number):
         """
         Get deep insight about a phone number
+
         Params:
             phone_number:
         """
@@ -25,6 +25,7 @@ class RadarVerification(PremblyBase):
     def email_intelligence(self, email):
         """
         Get deep insight about an email
+
         Params:
             email:
         """
@@ -37,8 +38,9 @@ class RadarVerification(PremblyBase):
     def ip_intelligence(self, ip):
         """
         Get deep insight about an IP
+        
         Params:
-            ip: This shoul be an IP ex 102.10.21.1
+            ip: This should be an IP ex 102.10.21.1
         """
 
         data = {'ip':ip}

@@ -1,6 +1,6 @@
 from unittest import TestCase
 from unittest.mock import patch
-from prembly.biometrics.data.nigeria import DataVerification 
+from prembly.data.nigeria import DataVerification 
 import prembly
 
 

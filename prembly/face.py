@@ -40,7 +40,6 @@ class FaceVerification(PremblyBase):
         # if image_one and image_two:
         #     image_one = image_to_base64(image_one)
         #     image_two = image_to_base64(image_two)
-        print(image_one)
         data = {
             'image_one':image_one,
             'image_two':image_two
@@ -71,6 +70,7 @@ class FaceVerification(PremblyBase):
         url = self._BASE_END_POINT + 'api/v2/biometrics/merchant/user/enroll'
         return self._handle_request('POST', url , data )
         # method = Post
+
 
     def authentication(self, image ):
         """

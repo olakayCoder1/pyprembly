@@ -30,8 +30,6 @@ class DataVerification(PremblyBase):
         Returns : 
             Json data from Prembly API.
         """
-        # rc_number: 092932
-        # company_name: TEST COMPANY
         data = {
             'company_type': company_type , 
             'rc_number': rc_number
@@ -49,7 +47,6 @@ class DataVerification(PremblyBase):
         Returns : 
             Json data from Prembly API.
         """
-        # company_name: TEST COMPANY
         data = {
             'company_type': company_name ,
             'company_name': company_name
@@ -76,9 +73,6 @@ class DataVerification(PremblyBase):
         Returns : 
             Json data from Prembly API.
         """
-        # rc_number: 092932
-        # company_name: TEST COMPANY
-        # company_type: RC
         data = {
             'company_type': company_type , 
             'rc_number': rc_number , 
@@ -133,7 +127,6 @@ class DataVerification(PremblyBase):
         Returns : 
             Json data from Prembly API.
         """
-        # number: 08082838283
         data = {'number': number }
         url = self.create_request_url(suburl='/phone_number') 
         return self._handle_request('POST', url , data=data)
@@ -160,8 +153,6 @@ class DataVerification(PremblyBase):
         Returns : 
             Json data from Prembly API.
         """
-            # number: 4444444444
-            # bank_code: 214
         data = {
                 'bank_code': bank_code ,  
                 'number': number
@@ -286,9 +277,6 @@ class DataVerification(PremblyBase):
         Returns : 
             Json data from Prembly API.
         """
-        # number: 987f545AJ67890
-        # last_name: test 
-        # state: Lagos
         data = { 
             'number': number , 
             'state': state , 
@@ -317,10 +305,6 @@ class DataVerification(PremblyBase):
         Returns : 
             Json data from Prembly API.
         """
-        #AAD23208212298
-        #1999-12-21
-        #test
-        #test
         data = {
             'number': number , 
             'dob' : dob, 
@@ -350,10 +334,6 @@ class DataVerification(PremblyBase):
             Json data from Prembly API.
         NOTE : dob format should look like 1998-06-19 - Format)
         """
-        #AAD23208212298
-        #1999-12-21
-        #test
-        #test
         data = {
             'number': number , 
             'dob' : dob, 
@@ -417,9 +397,7 @@ class DataVerification(PremblyBase):
             last_name : user's last name
         Returns : 
             Json data from Prembly API.
-        """
-        # number: A00400000
-        # last_name: test        
+        """       
         data  = { 
             'number': number , 
             'last_name' : last_name
@@ -527,10 +505,7 @@ class DataVerification(PremblyBase):
         url = self.create_request_url(suburl='/credit_bureau') 
         return self._handle_request('POST', url , data=data )
 
-
-
-
-        
+ 
     
     def credit_bureau_customer(
         self, 
@@ -654,8 +629,6 @@ class DataVerification(PremblyBase):
 
 
 
-
-
     def nin_lookup(
         self, 
         number=None , 
@@ -735,7 +708,6 @@ class DataVerification(PremblyBase):
         return self._handle_request('POST', url , data=data)
 
 
-
     def stamp_duty(
             self, 
             number=None , 
@@ -762,8 +734,6 @@ class DataVerification(PremblyBase):
         return self._handle_request('POST', url , data=data)
 
 
-
-
     def vehicle_verification(self, vehicle_number=None ) :
         """
         Verify a vehicle number plate
@@ -773,7 +743,6 @@ class DataVerification(PremblyBase):
         Returns : 
             Json data from Prembly API.
         """
-        # test data : AAA000000
         data = {'vehicle_number': vehicle_number}            
         url = self.create_request_url(suburl='/vehicle') 
         return self._handle_request('POST', url , data=data)
@@ -793,7 +762,6 @@ class DataVerification(PremblyBase):
         Returns : 
             Json data from Prembly API.
         """
-        # test data : AAA000000
         data = {
             'number': number , 
             'channel':channel

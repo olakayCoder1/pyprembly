@@ -1,6 +1,5 @@
 from unittest import TestCase
-from http  import HTTPStatus
-from prembly.biometrics.data.kenya import DataVerification
+from prembly.data.kenya import DataVerification
 
 
 

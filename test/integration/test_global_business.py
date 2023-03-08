@@ -1,6 +1,6 @@
 from unittest import TestCase
 from http  import HTTPStatus
-from prembly.biometrics.business import DataVerification 
+from prembly.business import DataVerification 
 
 
 

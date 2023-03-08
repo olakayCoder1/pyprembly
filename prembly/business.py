@@ -43,7 +43,6 @@ class DataVerification(PremblyBase):
         return self._handle_request('POST', url , data=data)
 
 
-
     def vin_verification(self , vin ):
         """
         Verify a VIN/CAR Identification Number 
@@ -59,7 +58,6 @@ class DataVerification(PremblyBase):
         url = self.create_request_url(suburl='/vehicle/vin') 
         return self._handle_request('POST', url , data=data)
     
-
 
     def verify_company(
         self ,customer_name:str=None, customer_reference:str=None ,
@@ -85,7 +83,6 @@ class DataVerification(PremblyBase):
         return self._handle_request('POST', url , data=data) 
     
 
-
     def search_with_email(self , email ):
         """
         Verify a company using email
@@ -101,8 +98,6 @@ class DataVerification(PremblyBase):
         url = self.create_request_url(suburl='/global/company/search_with_email') 
         return self._handle_request('POST', url , data=data)
     
-
-
 
     def search_interpol_ban_list(self , search_mode='NAME' , image = None , name:str=None):
         """
@@ -127,8 +122,6 @@ class DataVerification(PremblyBase):
         url = self.create_request_url(suburl='/vehicle/vin') 
         return self._handle_request('POST', url , data=data)
     
-
-
 
     def search_company(self , country_code,  company_name ):
         """

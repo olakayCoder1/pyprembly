@@ -18,7 +18,10 @@ The Python library for the Prembly Identitypass API.The Python library provides 
       - [Sierra Leone](#sierra-leone)
       - [South Africa](#south-africa)
       - [Uganda](#uganda)
-    - [Global Endpoints](#global-endpoints)
+    - [Global](#global)
+    - [FACE VALIDATION](#face-validation)
+    - [RADAR](#radar)
+    - [DOCUMENT](#document)
     - [Calling Endpoints](#calling-endpoints)
     - [Exceptions](#exceptions)
       - [MissingAuthKeyError](#missingauthkeyerror)
@@ -62,7 +65,7 @@ The available method of the `DataVerification` class are as follow:
 
 
 ```python
-from prembly.biometrics.data.nigeria import DataVerification
+from prembly.data.nigeria import DataVerification
 ``` 
 Available methods are :
 
@@ -76,26 +79,37 @@ Available methods are :
 | 6 | phone_number | _Verify a Phone Number_| 
 | 7 | banks_code | _Get all banks code_| 
 | 8 | bank_account | _Verify bank account number_| 
-| 9 | advance_bank_account | _Verify bank account number : return advance result_| 
-| 10 | bank_account_with_name | _Verify bank account number_| 
-| 11 | voters_card_image | _Verify voters card ID image_| 
-| 12 | voters_card_lookup | _Verify voters card number_| 
-| 13 | basic_drivers_license | _VVerify drivers license_| 
-| 14 | advance_drivers_license | _Verify drivers license : return advance result_| 
-| 15 | image_drivers_license | _Verify drivers license ID image_| 
-| 17 | international_passport | _Verify international passport_| 
-| 18 | international_passport_image | _Verify international passport image_| 
-| 19 | international_passport_with_face | _Verify international passport image_| 
-| 20 | international_passport_async | _Verify international passport in an asynchronous manner_| 
-| 21 | credit_bureau | _Verify advance credit details of a user_| 
-| 22 | credit_bureau_commercial | _Verify advance credit details of a business_| 
-| 23 | credit_bureau_commercial_basic | _Verify basic credit details of a business_| 
-| 24 | credit_bureau_statement | _Verify basic credit details of a business_| 
+| 9 | bank_account_comparison | _Verify bank account number and compare name with customer name_| 
+| 10 | all_bank_with_statement | _Get all available banking institution that bank statement can be retrieve_| 
+| 11 | advance_bank_account | _Verify bank account number : return advance result_| 
+| 12 | bank_account_with_name | _Verify bank account number_| 
+| 13 | voters_card_image | _Verify voters card ID image_| 
+| 14 | voters_card_lookup | _Verify voters card number_| 
+| 15 | basic_drivers_license | _VVerify drivers license_| 
+| 16 | advance_drivers_license | _Verify drivers license : return advance result_| 
+| 17 | image_drivers_license | _Verify drivers license ID image_| 
+| 18 | drivers_license_image | _Verify drivers license ID image_| 
+| 19 | international_passport | _Verify international passport_| 
+| 20 | international_passport_image | _Verify international passport image_| 
+| 21 | international_passport_with_face | _Verify international passport image_| 
+| 22 | international_passport_async | _Verify international passport in an asynchronous manner_| 
+| 23 | credit_bureau | _Get Credit bureau statement_| 
+| 24 | credit_bureau_customer | _Verify advance credit details of a user| 
+| 25 | credit_bureau_commercial | _Verify advance credit details of a business_| 
+| 26 | credit_bureau_commercial_basic | _Verify basic credit details of a business_| 
+| 27 | credit_bureau_statement | _Verify basic credit details of a business_| 
+| 28 | nin_slip | _Verify a National Identification Number(NIN) Slip_| 
+| 29 | nin_lookup | _Verify a National Identification Number(NIN) with phone number and (NIN) number_| 
+| 30 | nin_virtual | _Verify a National Identification Number(NIN) with NIN and virtual number_| 
+| 31 | nin_face | _Verify a National Identification Number(NIN) with user's image_| 
+| 32 | stamp_duty | _Verify a stamp  duty reference number_| 
+| 33 | vehicle_verification | _Verify a vehicle number plate_| 
+| 34 | tax_identification_number | _Verify tax identification number_| 
 
 
 #### Ghana 
 ```python
-from prembly.biometrics.data.ghana import DataVerification
+from prembly.data.ghana import DataVerification
 ``` 
 Available methods are:
 
@@ -108,7 +122,7 @@ Available methods are:
 
 #### Kenya 
 ```python
-from prembly.biometrics.data.kenya import DataVerification
+from prembly.data.kenya import DataVerification
 
 ``` 
 Available methods are:
@@ -117,10 +131,12 @@ Available methods are:
 | ------- | ----- | ------------- |
 | 1 | drivers_license | _Verify user drivers license_|
 | 2 | international_passport | _Verify user passport_| 
+| 3 | serial_number | _Verify user serial number_| 
+| 4 | national_identity_number_new | _Verify user national identity number_| 
 
 #### Sierra Leone 
 ```python
-from prembly.biometrics.data.sierra_leone import DataVerification
+from prembly.data.sierra_leone import DataVerification
 ``` 
 Available methods are:
 
@@ -132,7 +148,7 @@ Available methods are:
 
 #### South Africa 
 ```python
-from prembly.biometrics.data.south_africa import DataVerification
+from prembly.data.south_africa import DataVerification
 ``` 
 Available methods are:
 
@@ -144,7 +160,7 @@ Available methods are:
 
 #### Uganda 
 ```python
-from prembly.biometrics.data.uganda import DataVerification
+from prembly.data.uganda import DataVerification
 ``` 
 Available methods are:
 
@@ -152,9 +168,9 @@ Available methods are:
 | ------- | ----- | ------------- |
 | 1 | company | _Verify a business_|
 
-### Global Endpoints
+### Global 
 ```python
-from prembly.biometrics.global.business import DataSearch
+from prembly.business import DataVerification
 ``` 
 
 | SN | METHOD NAME | DESCRIPTION|
@@ -162,13 +178,57 @@ from prembly.biometrics.global.business import DataSearch
 | 1 | search_with_email | _Verify a company using email_|
 | 2 | search_with_name | _Verify a company using  name_| 
 | 3 | search_with_string | _Verify a company_| 
-| 4 | search_with_number | _Verify a company_|
+| 4 | search_interpol_ban_list | _Search an interpol ban list_|
+| 5 | search_company | _Search for a company using email_|
+| 6 | verify_company | _Verify a company information_|
+| 7 | vin_verification | _Verify a VIN/CAR Identification Number_|
+| 8 | card_bin_verification | _Verify a card BIN (Bank Identification Number)_|
+| 9 | email_verification | _Verify an email address_|
+
+
+
+### FACE VALIDATION 
+```python
+from prembly.face import DataVerification
+``` 
+
+| SN | METHOD NAME | DESCRIPTION|
+| ------- | ----- | ------------- |
+| 1 | age_and_gender | _Get the age range and gender of a person in an image_|
+| 2 | comparison | _Compare two face images_| 
+| 3 | enrollment | _Enroll user_| 
+| 4 | authentication | _Authenticate user using face_| 
+| 5 | face_id | _Verify user identity user  against their registered image using their id card(Voters card, National ID, Card etc)_| 
+| 6 | liveliness_check | _Authenticate user with liveliness check on face_| 
+
+### RADAR
+```python
+from prembly.radar import DataVerification
+``` 
+
+| SN | METHOD NAME | DESCRIPTION|
+| ------- | ----- | ------------- |
+| 1 | phone_intelligence | _Get deep insight about a phone number_|
+| 2 | email_intelligence | _Get deep insight about an email_| 
+| 3 | ip_intelligence | _Get deep insight about an IP_|
+
+
+
+### DOCUMENT
+```python
+from prembly.radar import DataVerification
+``` 
+
+| SN | METHOD NAME | DESCRIPTION|
+| ------- | ----- | ------------- |
+| 1 | verify | _Verify document image_|
+
 
 ### Calling Endpoints
 To make a simple API call:
 
 ```python
-from pyprembly.biometrics.data.nigeria import DataVerification
+from pyprembly.data.nigeria import DataVerification
 
 
 try:
