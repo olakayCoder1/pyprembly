@@ -5,7 +5,7 @@ from prembly.utils import create_request_url
 class DataVerification(PremblyBase):
     """
     Base class for all IdentityPass API available in South Africa
-    """
+    """ 
 
     def national_id(
             self , 

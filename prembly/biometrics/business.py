@@ -59,12 +59,32 @@ class DataVerification(PremblyBase):
         url = self.create_request_url(suburl='/vehicle/vin') 
         return self._handle_request('POST', url , data=data)
     
+
+
+    def verify_company(
+        self ,customer_name:str=None, customer_reference:str=None ,
+        country_code:str=None , company_number:str=None ):
+        """
+        Verify a company information
+        
+        Params:
+            customer_name : customer name 
+            customer_reference: customer reference  
+            country_code: company country code ge NG 
+            company_number: company registration number ge RC-000000 e    
+        Returns : 
+            Json data from Prembly API.
+        """
+        data = {
+            'customer_name' :customer_name,
+            'customer_reference' :customer_reference,
+            'country_code' :country_code,
+            'company_number' :company_number,
+        }
+        url = self.create_request_url(suburl='/global/company') 
+        return self._handle_request('POST', url , data=data) 
     
 
-
-
-
-class DataSearch(PremblyBase):
 
     def search_with_email(self , email ):
         """
@@ -166,25 +186,4 @@ class DataSearch(PremblyBase):
         return self._handle_request('POST', url , data=data)
 
 
-    def verify_company(
-        self ,customer_name:str=None, customer_reference:str=None ,
-        country_code:str=None , company_number:str=None ):
-        """
-        Verify a company information
-        
-        Params:
-            customer_name : customer name 
-            customer_reference: customer reference  
-            country_code: company country code ge NG 
-            company_number: company registration number ge RC-000000 e    
-        Returns : 
-            Json data from Prembly API.
-        """
-        data = {
-            'customer_name' :customer_name,
-            'customer_reference' :customer_reference,
-            'country_code' :country_code,
-            'company_number' :company_number,
-        }
-        url = self.create_request_url(suburl='/global/company') 
-        return self._handle_request('POST', url , data=data) 
+    

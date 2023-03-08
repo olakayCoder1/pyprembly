@@ -39,14 +39,16 @@ def image_to_base64(image_path):
 
 def is_base64_image(image):
     """
-    Check if image is in base64 format else convert it to base64
+    Check if image is in base64 format if not convert it to base64
     """
     try:
         # check if image is already in base64 format
         base64.b64decode(image)
         return image
-    except:
+    except binascii.Error:
         # if image is not in base64 format, try to encode it
+        return None
+    except :
         return image_to_base64(image)
 
 

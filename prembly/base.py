@@ -21,10 +21,10 @@ class PremblyBase(object):
     
 
     def __init__( 
-        self, prembly_app_id: str = None , 
-        prembly_x_api_key : str = None , 
-        api_version: str ='v2' , 
-        environment : str ='sandbox', 
+        self, prembly_app_id= None , 
+        prembly_x_api_key = None , 
+        api_version='v2' , 
+        environment ='sandbox', 
         ):
         self._BASE_END_POINT = PremblyConfiguration.BASE_END_POINT_DICTIONARY.get( environment )
         self._API_VERSION = api_version
@@ -48,7 +48,8 @@ class PremblyBase(object):
             )
 
 
-        # if the app id is provided in the initialization , set the _PREMBLY_X_API_KEY to the provided value
+        # if the app id is provided in the initialization 
+        # set the _PREMBLY_X_API_KEY to the provided value
         if prembly_app_id:
             self._PREMBLY_X_API_KEY = prembly_x_api_key
         else:
@@ -115,7 +116,7 @@ class PremblyBase(object):
         }
         payload = json.dumps(data) if data else data
         request = method_dict.get(method)
-
+        print(url)
         if not request:
             raise InvalidMethodError("Request method not recognized or implemented")
         response = request(url, headers=self._headers(), data=payload)
@@ -126,7 +127,10 @@ class PremblyBase(object):
             # Would catch just requests.exceptions.RequestException, but can
             # also raise ValueError, RuntimeError, etc.
             self._handle_request_error(e)
-        return json.loads(response.text)
+        print(response.status_code)
+        # print(json.loads(response.text))
+        
+        return json.loads(response.text) 
         
 
 
@@ -139,12 +143,8 @@ class PremblyBase(object):
             msg = ("Unexpected error communicating with Prembly. "
                    "It looks like there's probably a configuration "
                    "issue locally.  If this problem persists, let me "
-                   "know at programmerolakay@gmail.com.")
-        else:  
-            msg = ("Unexpected error communicating with Prembly. "
-                   "It looks like there's probably a configuration "
-                   "issue locally.  If this problem persists, let me "
-                   "know at programmerolakay@gmail.com.")
+                   "know at programmer here's probably a configuration "
+                   )
         raise APIConnectionError(msg)
         
 

@@ -14,6 +14,7 @@ with open(
 
 setup(
     name = 'prembly',
+    # version=
     packages = find_packages(exclude=["tests", "tests.*"]), 
     description="Python bindings for the Prembly IdentityPass API",
     long_description=long_description,
@@ -21,4 +22,8 @@ setup(
     author="Olanrewaju Kabiru",
     author_email="programmerolakay@gmail.com",
     url="https://github.com/olakayCoder1/pyprembly-sdk",
+    python_requires='>=3.x',
+    install_requires=[
+        "requests","python-dotenv", "urllib3",
+    ],
 )

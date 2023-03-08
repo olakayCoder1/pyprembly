@@ -17,8 +17,8 @@ class DataVerification(PremblyBase):
     
     def cac(
             self, 
-            rc_number: int = None , 
-            company_type : str ='RC' 
+            rc_number= None , 
+            company_type ='RC' 
             ):
         """
         Verify a business using rc_number
@@ -40,9 +40,9 @@ class DataVerification(PremblyBase):
         return self._handle_request('POST', url , data=data)
 
 
-    def cac_with_name(self,company_name : str = None ):
+    def cac_with_name(self,company_name = None ):
         """
-        Verify a business using rc_number
+        Verify a business using name
         company_name : The company name
         Params:
             company_name : The company name
@@ -61,9 +61,9 @@ class DataVerification(PremblyBase):
     
     def cac_advance(
             self,  
-            rc_number: int = None ,  
-            company_type : str ='RC' , 
-            company_name : str = None 
+            rc_number= None ,  
+            company_type ='RC' , 
+            company_name = None 
             ):
         """
         Verify a business using rc_number
@@ -88,7 +88,7 @@ class DataVerification(PremblyBase):
         return self._handle_request('POST', url , data=data)
 
 
-    def bvn_number(self, number: int = None ):
+    def bvn_number(self, number= None ):
         """
         Verify a Bank Verification Number (BVN)
         number : Bank Verification Number
@@ -104,7 +104,7 @@ class DataVerification(PremblyBase):
 
     def bvn_with_face(
             self, 
-            number: int = None , 
+            number= None , 
             image= None ):
         """
         Verify a Bank Verification Number (BVN) using image and number
@@ -149,8 +149,8 @@ class DataVerification(PremblyBase):
 
     def bank_account(
             self , 
-            number:int=None,
-            bank_code:str=None):
+            number=None,
+            bank_code=None):
         """
         Verify bank account number
         
@@ -166,17 +166,17 @@ class DataVerification(PremblyBase):
                 'bank_code': bank_code ,  
                 'number': number
             }
-        url = self.create_request_url(suburl='/bank_account') 
+        url = self.create_request_url(suburl='/bank_account/advance') 
         return self._handle_request('POST', url , data=data )
 
 
 
     def bank_account_comparison(
             self , 
-            number:int=None,
-            bank_code:str=None , 
-            customer_name:str=None, 
-            customer_reference:str=None
+            number=None,
+            bank_code=None , 
+            customer_name=None, 
+            customer_reference=None
             ):
         """
         Verify bank account number and compare name with customer name
@@ -216,7 +216,7 @@ class DataVerification(PremblyBase):
     #     return self._handle_request('POST', url )
 
     
-    def advance_bank_account(self , number:int=None,bank_code:str=None):
+    def advance_bank_account(self , number=None,bank_code=None):
         """
         Verify bank account number
         
@@ -232,8 +232,8 @@ class DataVerification(PremblyBase):
 
 
     # def bank_account_with_name(
-    #     self , number:int=None,bank_code:str=None , 
-    #     customer_name:str=None , customer_reference:str=None):
+    #     self , number=None,bank_code=None , 
+    #     customer_name=None , customer_reference=None):
     #     """
     #     Verify bank account number
         
@@ -301,10 +301,10 @@ class DataVerification(PremblyBase):
 
     def basic_drivers_license(
         self ,
-        number:int=None , 
-        dob:str=None , 
-        first_name:str=None, 
-        last_name:str=None
+        number=None , 
+        dob=None , 
+        first_name=None, 
+        last_name=None
         ):
         """
         Verify drivers license
@@ -333,10 +333,10 @@ class DataVerification(PremblyBase):
 
     def advance_drivers_license(
         self , 
-        number:int=None , 
-        dob:str=None , 
-        first_name:str=None, 
-        last_name:str=None
+        number=None , 
+        dob=None , 
+        first_name=None, 
+        last_name=None
         ):
         """
         Verify drivers license
@@ -383,8 +383,8 @@ class DataVerification(PremblyBase):
     def drivers_license_image(
             self , 
             image,
-            number:int=None,  
-            dob:str=None ,  
+            number=None,  
+            dob=None ,  
             ):
         """
         Verify drivers license ID image
@@ -408,7 +408,7 @@ class DataVerification(PremblyBase):
 
 
     
-    def international_passport(self , number:int=None,  last_name:str=None):
+    def international_passport(self , number=None,  last_name=None):
         """
         Verify international passport
         
@@ -431,8 +431,8 @@ class DataVerification(PremblyBase):
     
     def international_passport_image(
             self , image,  
-            customer_reference:str=None , 
-            customer_name:str=None
+            customer_reference=None , 
+            customer_name=None
             ):
         """
         Verify international passport image 
@@ -458,8 +458,8 @@ class DataVerification(PremblyBase):
     def international_passport_with_face(
             self , 
             image,  
-            last_name:str=None , 
-            number:int=None):
+            last_name=None , 
+            number=None):
         """
         Verify international passport image 
         
@@ -483,8 +483,8 @@ class DataVerification(PremblyBase):
 
     def international_passport_async(
             self , 
-            last_name:str=None , 
-            number:int=None
+            last_name=None , 
+            number=None
             ):
         """
         Verify international passport in an asynchronous manner. 
@@ -508,30 +508,21 @@ class DataVerification(PremblyBase):
     
     def credit_bureau(
         self, 
-        customer_reference, 
-        customer_name=None , 
-        number=None, 
-        mode=None , 
-        dob=None
+        phone_number=None, 
+        first_name=None , 
         ):
         """
-        Verify advance credit details of a user
+        Get Credit bureau statement
         
         Params:
-            customer_reference : unique customer reference
-            customer_name : customer name
-            number : if model is ID(should be BVN)
-            dob : if model is BIO(Date of birth)
-            mode : either ID or BVN
+            phone_number : Phone number
+            first_name : First name
         Returns : 
             Json data from Prembly API.
         """    
         data  = { 
-            'customer_name' : customer_name, 
-            'customer_reference' : customer_reference ,
-            'number' : number,  
-            'dob': dob  , 
-            'mode' : mode
+            'phone_number' : phone_number,  
+            'first_name': first_name  , 
         }
         url = self.create_request_url(suburl='/credit_bureau') 
         return self._handle_request('POST', url , data=data )
@@ -543,11 +534,11 @@ class DataVerification(PremblyBase):
     
     def credit_bureau_customer(
         self, 
-        customer_reference, 
-        customer_name:str=None , 
-        number:int=None, 
-        mode:str=None , 
-        dob:str=None
+        customer_reference=None, 
+        customer_name=None , 
+        number=None, 
+        mode=None , 
+        dob=None
         ):
         """
         Verify advance credit details of a user
@@ -568,13 +559,14 @@ class DataVerification(PremblyBase):
             'dob': dob  , 
             'mode' : mode
         }
-        url = self.create_request_url(suburl='/credit_bureau/customer/basic') 
+        url = self.create_request_url(suburl='/credit_bureau/consumer/basic') 
+       
         return self._handle_request('POST', url , data=data )
 
     
     def credit_bureau_commercial(
         self, 
-        customer_reference, 
+        customer_reference=None, 
         customer_name=None , 
         rc_number=None
         ):
@@ -598,28 +590,36 @@ class DataVerification(PremblyBase):
 
 
     def credit_bureau_commercial_basic(
-        self,customer_name=None , rc_number=None ):
+        self,
+        customer_reference=None, 
+        customer_name=None , 
+        rc_number=None 
+        ):
         """
         Verify basic credit details of a business
         
         Params:
+            customer_reference : unique customer reference
             rc_number : company RC number
             customer_name : customer  name
+            
         Returns : 
             Json data from Prembly API.
-        """   
-        # customer_name: Test Name 
-        # rc_number: 59002     
+        """       
         data  = { 
             'customer_name' : customer_name, 
-            'rc_number' : rc_number
+            'rc_number' : rc_number,
+            'customer_reference' : customer_reference ,
         }
         url = self.create_request_url(suburl='/credit_bureau/commercial/basic') 
         return self._handle_request('POST', url , data=data )
 
 
     def credit_bureau_statement(
-        self,first_name:str=None ,phone_number:int=None ):
+        self,
+        first_name=None ,
+        phone_number=None 
+        ):
         """
         Verify basic credit details of a business
         
@@ -638,7 +638,7 @@ class DataVerification(PremblyBase):
 
 
 
-    def nin_slip(self, image: str = None) :
+    def nin_slip(self, image= None) :
         """
         Verify a National Identification Number(NIN) Slip
         
@@ -656,7 +656,11 @@ class DataVerification(PremblyBase):
 
 
 
-    def nin_lookup(self, number=None , number_nin=None) :
+    def nin_lookup(
+        self, 
+        number=None , 
+        number_nin=None
+        ) :
         """
         Verify a National Identification Number(NIN) with phone number and (NIN) number
         
@@ -677,7 +681,11 @@ class DataVerification(PremblyBase):
 
 
 
-    def nin_virtual(self, number=None , number_nin=None) :
+    def nin_virtual(
+        self, 
+        number=None , 
+        number_nin=None
+        ) :
         """
         Verify a National Identification Number(NIN) with NIN and virtual number
         
@@ -709,7 +717,7 @@ class DataVerification(PremblyBase):
     def nin_face(
             self, 
             number=None , 
-            image: str =None
+            image=None
             ) :
         """
         Verify a National Identification Number(NIN) with user's image
@@ -731,8 +739,8 @@ class DataVerification(PremblyBase):
     def stamp_duty(
             self, 
             number=None , 
-            customer_name: str =None, 
-            customer_reference:str=None
+            customer_name=None, 
+            customer_reference=None
             ) :
         """
         Verify a stamp  duty reference number
@@ -771,7 +779,11 @@ class DataVerification(PremblyBase):
         return self._handle_request('POST', url , data=data)
     
 
-    def tax_identification_number(self, number=None , channel='TIN' ) :
+    def tax_identification_number(
+        self, 
+        number=None , 
+        channel='TIN' 
+        ) :
         """
         Verify tax identification number
 

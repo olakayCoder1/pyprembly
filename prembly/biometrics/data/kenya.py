@@ -9,9 +9,9 @@ class DataVerification(PremblyBase):
 
     def passport(
             self, 
-            number:int=None , 
-            customer_name:str=None , 
-            customer_reference:int=None
+            number=None , 
+            customer_name=None , 
+            customer_reference=None
             ):
         """
         Verify user passport
@@ -33,12 +33,63 @@ class DataVerification(PremblyBase):
         return self._handle_request('POST', url , data=data)
 
 
+    def serial_number(
+            self ,  
+            number=None ,
+            customer_name=None , 
+            customer_reference=None
+            ):
+        """
+        Verify user serial number
+        
+        Params:
+            number : serial number
+            customer_name : Customer name
+            customer_reference : Customer reference
+        Returns : 
+            Json data from Prembly API.
+        """
+        data = {
+            'number' :number,
+            'customer_name': customer_name ,
+            'customer_reference': customer_reference
+        }
+        url = self.create_request_url(suburl='/ke/serial_number') 
+        return self._handle_request('POST', url , data=data)
+    
+
+
+    def national_identity_number_new(
+            self ,  
+            number=None ,
+            customer_name=None , 
+            customer_reference=None
+            ):
+        """
+        Verify national identity number
+        
+        Params:
+            number : NATIONAL ID
+            customer_name : Customer name
+            customer_reference : Customer reference
+        Returns : 
+            Json data from Prembly API.
+        """
+        data = {
+            'number' :number,
+            'customer_name': customer_name ,
+            'customer_reference': customer_reference
+        }
+        url = self.create_request_url(suburl='/ke/national_id/new') 
+        return self._handle_request('POST', url , data=data)
+
+
 
     def drivers_license(
             self ,  
-            number:int=None ,
-            customer_name:str=None , 
-            customer_reference:int=None
+            number=None ,
+            customer_name=None , 
+            customer_reference=None
             ):
         """
         Verify user drivers license
