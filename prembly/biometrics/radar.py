@@ -18,7 +18,7 @@ class RadarVerification(PremblyBase):
             phone_number:
         """
         data = {'phone_number':phone_number}
-        url = self._radar_base_endpoint +  '/complete-profile-check'
+        url = self._radar_base_endpoint() +  '/complete-profile-check'
         return self._handle_request('POST', url , data )
     
 
@@ -30,7 +30,7 @@ class RadarVerification(PremblyBase):
         """
 
         data = {'email':email}
-        url = self._radar_base_endpoint +  '/complete-profile-check'
+        url = self._radar_base_endpoint() +  '/complete-profile-check'
         return self._handle_request('POST', url , data )
 
 
@@ -42,6 +42,6 @@ class RadarVerification(PremblyBase):
         """
 
         data = {'ip':ip}
-        url = self._radar_base_endpoint +  '/complete-profile-check'
+        url = self._radar_base_endpoint() +  '/complete-profile-check'
         return self._handle_request('POST', url , data )
 
