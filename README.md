@@ -133,6 +133,7 @@ Available methods are:
 | 2 | international_passport | _Verify user passport_| 
 | 3 | serial_number | _Verify user serial number_| 
 | 4 | national_identity_number_new | _Verify user national identity number_| 
+| 5 | alien_id | _Verify and authenticate foreign resident_| 
 
 #### Sierra Leone 
 ```python
