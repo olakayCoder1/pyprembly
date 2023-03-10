@@ -116,7 +116,6 @@ class PremblyBase(object):
         }
         payload = json.dumps(data) if data else data
         request = method_dict.get(method)
-        print(url)
         if not request:
             raise InvalidMethodError("Request method not recognized or implemented")
         response = request(url, headers=self._headers(), data=payload)
@@ -127,8 +126,6 @@ class PremblyBase(object):
             # Would catch just requests.exceptions.RequestException, but can
             # also raise ValueError, RuntimeError, etc.
             self._handle_request_error(e)
-        print(response.status_code)
-        # print(json.loads(response.text))
         
         return json.loads(response.text) 
         
