@@ -107,3 +107,28 @@ class DataVerification(PremblyBase):
         }
         url = self.create_request_url(suburl='/ke/drivers_license') 
         return self._handle_request('POST', url , data=data)
+
+
+    def alien_id(
+            self ,  
+            number=None ,
+            customer_name=None , 
+            customer_reference=None
+            ):
+        """
+        Verify and authenticate foreign resident 
+        
+        Params:
+            number : customer number
+            customer_name : Customer name
+            customer_reference : Customer reference
+        Returns : 
+            Json data from Prembly API.
+        """
+        data = {
+            'number' :number,
+            'customer_name': customer_name ,
+            'customer_reference': customer_reference
+        }
+        url = self.create_request_url(suburl='/ke/alien_id') 
+        return self._handle_request('POST', url , data=data)

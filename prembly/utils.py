@@ -46,9 +46,9 @@ def is_base64_image(image):
         base64.b64decode(image)
         return image
     except binascii.Error:
-        # if image is not in base64 format, try to encode it
         return None
     except :
+        # if image is not in base64 format, try to encode it
         return image_to_base64(image)
 
 
