@@ -4,9 +4,9 @@ Premby API wrapper.
 @author Olanrewaju Kabiru.
 
 """
-from prembly.base import PremblyBase
-from prembly.utils import create_request_url , image_to_base64
-from prembly.exceptions import MissingRequiredDataError
+from pyprembly.base import PremblyBase
+from pyprembly.utils import image_to_base64
+from pyprembly.exceptions import MissingRequiredDataError
 
 class DataVerification(PremblyBase):
 

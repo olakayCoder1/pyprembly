@@ -1,5 +1,5 @@
-from prembly.base import PremblyBase
-from prembly.utils import image_to_base64
+from pyprembly.base import PremblyBase
+from pyprembly.utils import image_to_base64
 
 
 

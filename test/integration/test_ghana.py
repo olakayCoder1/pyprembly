@@ -1,5 +1,5 @@
 from unittest import TestCase
-from prembly.data.ghana import DataVerification
+from pyprembly.data.ghana import DataVerification
 
 
 

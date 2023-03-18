@@ -4,9 +4,9 @@ Premby API wrapper.
 @author Olanrewaju Kabiru.
 
 """
-from prembly.base import PremblyBase
-from prembly.exceptions import *
-from prembly.utils import is_base64_image
+from pyprembly.base import PremblyBase
+from pyprembly.exceptions import *
+from pyprembly.utils import is_base64_image
 
 
 

@@ -9,13 +9,13 @@ os.chdir(here)
 
 
 # Get the long description from the README file
-with open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
+with open(os.path.join(here, 'LONG_DESCRIPTION.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 
 
 setup(
-    name = 'prembly',
+    name = 'pyprembly',
     version='0.0.1',
     packages = find_packages(exclude=["tests", "tests.*"]), 
     description="Python bindings for the Prembly IdentityPass API",
@@ -25,7 +25,7 @@ setup(
     keywords='api, client, prembly',
     author="Olanrewaju Kabiru",
     author_email="programmerolakay@gmail.com",
-    url="https://github.com/olakayCoder1/pyprembly-sdk",
+    url="https://github.com/olakayCoder1/pyprembly",
     python_requires='>=3.x',
     install_requires=[
         "requests","python-dotenv", "urllib3",
@@ -41,8 +41,6 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Environment :: Web Environment",
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT License',
-
-        
+        'License :: OSI Approved :: MIT License',   
     ]
 )

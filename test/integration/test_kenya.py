@@ -1,5 +1,5 @@
 from unittest import TestCase
-from prembly.data.kenya import DataVerification
+from pyprembly.data.kenya import DataVerification
 
 
 

@@ -1,7 +1,7 @@
 from unittest import TestCase
 from unittest.mock import patch
-from prembly.data.nigeria import DataVerification 
-import prembly
+from pyprembly.data.nigeria import DataVerification 
+import pyprembly
 
 
 
@@ -175,7 +175,7 @@ class TestNigeria(TestCase):
         )
         self.assertEqual(response['detail'], "Verification Successful")
 
-    @patch('prembly.data.nigeria.DataVerification.nin_lookup')
+    @patch('pyprembly.data.nigeria.DataVerification.nin_lookup')
     def test_nin_lookup(self, mock_data ):
         mock_data.return_value = {'foo':'bar'}
         response = self.Verification.nin_lookup('54651333604','54651333604')

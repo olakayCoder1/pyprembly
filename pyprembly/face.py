@@ -4,8 +4,8 @@ Premby API wrapper.
 @author Olanrewaju Kabiru.
 
 """
-from prembly.utils import image_to_base64
-from prembly.base import PremblyBase
+from pyprembly.utils import image_to_base64
+from pyprembly.base import PremblyBase
 
 
 class FaceVerification(PremblyBase):

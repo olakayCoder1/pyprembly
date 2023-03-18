@@ -1,4 +1,4 @@
-from prembly.base import PremblyBase
+from pyprembly.base import PremblyBase
 
 
 class DataVerification(PremblyBase):

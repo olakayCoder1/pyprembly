@@ -2,8 +2,8 @@ import requests
 import json
 from urllib.parse import *
 from dotenv import load_dotenv
-from prembly.configuration import  PremblyConfiguration
-from prembly.exceptions import (
+from pyprembly.configuration import  PremblyConfiguration
+from pyprembly.exceptions import (
     MissingAuthKeyError , InvalidMethodError , APIConnectionError
 )
 

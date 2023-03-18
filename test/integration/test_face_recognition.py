@@ -1,7 +1,7 @@
 from unittest import TestCase
 from unittest.mock import patch
-from prembly.face import FaceVerification 
-import prembly
+from pyprembly.face import FaceVerification 
+import pyprembly
 
 
 
