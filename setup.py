@@ -16,7 +16,7 @@ with open(os.path.join(here, 'LONG_DESCRIPTION.md'), encoding='utf-8') as f:
 
 setup(
     name = 'pyprembly',
-    version='0.0.1',
+    version='0.0.2',
     packages = find_packages(exclude=["tests", "tests.*"]), 
     description="Python bindings for the Prembly IdentityPass API",
     long_description=long_description,
