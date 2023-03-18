@@ -21,6 +21,7 @@ setup(
     description="Python bindings for the Prembly IdentityPass API",
     long_description=long_description,
     long_description_content_type='text/markdown',
+    zip_safe = False,
     keywords='api, client, prembly',
     author="Olanrewaju Kabiru",
     author_email="programmerolakay@gmail.com",
