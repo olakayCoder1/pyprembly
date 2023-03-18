@@ -244,7 +244,7 @@ except APIConnectionError as e:
 In this case you must have store your API keys in an environment variable.Alternatively you can also do
 
 ```python
-from pyprembly.biometrics.data.nigeria import DataVerification
+from pyprembly.data.nigeria import DataVerification
 
 DataVerification(
     prembly_app_id='your app id',

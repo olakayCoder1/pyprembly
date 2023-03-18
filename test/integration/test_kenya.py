@@ -9,7 +9,7 @@ class TestKenya(TestCase):
     def setUp(self):
         self.Verification = DataVerification()
         self.reference = 'njfijfdjdf82292jjds'
-        self.name = self.name
+        self.name = 'John Doe'
 
 
     

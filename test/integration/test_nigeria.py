@@ -175,7 +175,7 @@ class TestNigeria(TestCase):
         )
         self.assertEqual(response['detail'], "Verification Successful")
 
-    @patch('prembly.biometrics.data.nigeria.DataVerification.nin_lookup')
+    @patch('prembly.data.nigeria.DataVerification.nin_lookup')
     def test_nin_lookup(self, mock_data ):
         mock_data.return_value = {'foo':'bar'}
         response = self.Verification.nin_lookup('54651333604','54651333604')
