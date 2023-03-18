@@ -65,7 +65,7 @@ The available method of the `DataVerification` class are as follow:
 
 
 ```python
-from prembly.data.nigeria import DataVerification
+from pyprembly.data.nigeria import DataVerification
 ``` 
 Available methods are :
 
@@ -109,7 +109,7 @@ Available methods are :
 
 #### Ghana 
 ```python
-from prembly.data.ghana import DataVerification
+from pyprembly.data.ghana import DataVerification
 ``` 
 Available methods are:
 
@@ -122,7 +122,7 @@ Available methods are:
 
 #### Kenya 
 ```python
-from prembly.data.kenya import DataVerification
+from pyprembly.data.kenya import DataVerification
 
 ``` 
 Available methods are:
@@ -137,7 +137,7 @@ Available methods are:
 
 #### Sierra Leone 
 ```python
-from prembly.data.sierra_leone import DataVerification
+from pyprembly.data.sierra_leone import DataVerification
 ``` 
 Available methods are:
 
@@ -149,7 +149,7 @@ Available methods are:
 
 #### South Africa 
 ```python
-from prembly.data.south_africa import DataVerification
+from pyprembly.data.south_africa import DataVerification
 ``` 
 Available methods are:
 
@@ -161,7 +161,7 @@ Available methods are:
 
 #### Uganda 
 ```python
-from prembly.data.uganda import DataVerification
+from pyprembly.data.uganda import DataVerification
 ``` 
 Available methods are:
 
@@ -171,7 +171,7 @@ Available methods are:
 
 ### Global 
 ```python
-from prembly.business import DataVerification
+from pyprembly.business import DataVerification
 ``` 
 
 | SN | METHOD NAME | DESCRIPTION|
@@ -190,7 +190,7 @@ from prembly.business import DataVerification
 
 ### FACE VALIDATION 
 ```python
-from prembly.face import DataVerification
+from pyprembly.face import DataVerification
 ``` 
 
 | SN | METHOD NAME | DESCRIPTION|
@@ -204,7 +204,7 @@ from prembly.face import DataVerification
 
 ### RADAR
 ```python
-from prembly.radar import DataVerification
+from pyprembly.radar import DataVerification
 ``` 
 
 | SN | METHOD NAME | DESCRIPTION|
@@ -217,7 +217,7 @@ from prembly.radar import DataVerification
 
 ### DOCUMENT
 ```python
-from prembly.radar import DataVerification
+from pyprembly.radar import DataVerification
 ``` 
 
 | SN | METHOD NAME | DESCRIPTION|
@@ -229,7 +229,7 @@ from prembly.radar import DataVerification
 To make a simple API call:
 
 ```python
-from pyprembly.data.nigeria import DataVerification
+from pypyprembly.data.nigeria import DataVerification
 
 
 try:
