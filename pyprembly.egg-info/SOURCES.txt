@@ -20,6 +20,7 @@ pyprembly/data/__init__.py
 pyprembly/data/ghana.py
 pyprembly/data/kenya.py
 pyprembly/data/nigeria.py
+pyprembly/data/rwanda.py
 pyprembly/data/sierra_leone.py
 pyprembly/data/south_africa.py
 pyprembly/data/uganda.py
