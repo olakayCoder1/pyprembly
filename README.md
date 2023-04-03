@@ -18,6 +18,7 @@ The Python library for the Prembly Identitypass API.The Python library provides 
       - [Sierra Leone](#sierra-leone)
       - [South Africa](#south-africa)
       - [Uganda](#uganda)
+      - [Rwanda](#rwanda)
     - [Global](#global)
     - [FACE VALIDATION](#face-validation)
     - [RADAR](#radar)
@@ -46,6 +47,7 @@ The package supports all Prembly Identitypass API endpoints for the following co
 - Sierra Leone
 - South Africa
 - Uganda
+- Rwanda
 
 ### Configuration
 
@@ -168,6 +170,18 @@ Available methods are:
 | SN | METHOD NAME | DESCRIPTION|
 | ------- | ----- | ------------- |
 | 1 | company | _Verify a business_|
+
+
+#### Rwanda 
+```python
+from pyprembly.data.rwanda import DataVerification
+``` 
+Available methods are:
+
+| SN | METHOD NAME | DESCRIPTION|
+| ------- | ----- | ------------- |
+| 1 | passport | _Verify Rwandan passport_|
+| 2 | national_id | _Verify national identity card issued to Rwandan_|
 
 ### Global 
 ```python

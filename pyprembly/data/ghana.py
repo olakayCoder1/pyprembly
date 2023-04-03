@@ -7,7 +7,7 @@ class DataVerification(PremblyBase):
     """
 
 
-    def drivers_license(self ,  number  , dob:str=None):
+    def drivers_license(self ,  number  , dob=None):
         """
         Verify user drivers license
         
@@ -27,7 +27,7 @@ class DataVerification(PremblyBase):
 
     def ssnit(self ,  number  ):
         """
-        Verify user SSNIT
+        Verify user Social Security and National Insurance Trust(SSNIT)
         
         Params:
             number : SSNIT number
@@ -41,7 +41,25 @@ class DataVerification(PremblyBase):
         return self._handle_request('POST', url , data=data)
 
 
-    def voters_card(self, number:int=None , type:str='MAIN' ):
+    def ssnit_with_face(self ,  number=None, image=None  ):
+        """
+        Verify user Social Security and National Insurance Trust(SSNIT) number with uploaded image
+        
+        Params:
+            number : SSNIT number
+            image : face image(base64, png, jpg )
+        Returns : 
+            Json data from Prembly API.
+        """
+        data = {
+            'number' :number,
+            'image' :image,
+        }
+        url = self.create_request_url(suburl='/gh/ssnit/face') 
+        return self._handle_request('POST', url , data=data)
+
+
+    def voters_card(self, number=None , type='MAIN' ):
         """
         Verify voters card
         
@@ -59,7 +77,7 @@ class DataVerification(PremblyBase):
         return self._handle_request('POST', url , data=data)
 
 
-    def international_passport(self, number:int=None ):
+    def international_passport(self, number=None ):
         """
         Verify user passport
         number : Passport number

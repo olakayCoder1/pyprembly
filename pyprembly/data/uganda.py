@@ -8,7 +8,7 @@ class DataVerification(PremblyBase):
 
     def company(
             self, 
-            reservation_number:int=None 
+            reservation_number=None 
             ):
 
         data = {

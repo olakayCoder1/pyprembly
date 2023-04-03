@@ -8,10 +8,10 @@ class DataVerification(PremblyBase):
 
     def national_id(
             self , 
-            firstname:str=None, 
-            lastname:str= None , 
-            nationalid:str=None , 
-            dob:str=None
+            firstname=None, 
+            lastname= None , 
+            nationalid=None , 
+            dob=None
             ):
         """
         Verify user national id card
@@ -34,7 +34,7 @@ class DataVerification(PremblyBase):
         return self._handle_request('POST', url , data=data)
 
 
-    def company(self , customer_reference:str=None, customer_name:str= None , reg_number:str=None):
+    def company(self , customer_reference=None, customer_name= None , reg_number=None):
         """
         Verify business
         

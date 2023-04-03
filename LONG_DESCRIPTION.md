@@ -15,6 +15,7 @@ The Python library for the Prembly Identitypass API.The Python library provides 
       - [Nigeria](#nigeria)
       - [Ghana](#ghana)
       - [Kenya](#kenya)
+      - [Rwanda](#rwanda)
       - [Sierra Leone](#sierra-leone)
       - [South Africa](#south-africa)
       - [Uganda](#uganda)
@@ -46,6 +47,8 @@ The package supports all Prembly Identitypass API endpoints for the following co
 - Sierra Leone
 - South Africa
 - Uganda
+- Rwanda
+
 
 ### Configuration
 
@@ -74,6 +77,12 @@ from pyprembly.data.ghana import DataVerification
 #### Kenya 
 ```python
 from pyprembly.data.kenya import DataVerification
+
+``` 
+
+#### Rwanda 
+```python
+from pyprembly.data.rwanda import DataVerification
 
 ``` 
 

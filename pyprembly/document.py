@@ -9,8 +9,8 @@ class DataVerification(PremblyBase):
     def verify(
             self ,
             doc_image, 
-            doct_country:str=None, 
-            doc_type:str=None ,
+            doct_country=None, 
+            doc_type=None ,
             ):
         """
         Verify document image

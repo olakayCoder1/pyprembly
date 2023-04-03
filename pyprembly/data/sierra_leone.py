@@ -8,12 +8,12 @@ class DataVerification(PremblyBase):
 
     def voters_card(
         self , 
-        search_mode:str='ID', 
-        number:str= None , 
-        firstname:str=None , 
-        lastname:str=None,
-        middlename:str=None , 
-        dob:str=None
+        search_mode='ID', 
+        number= None , 
+        firstname=None , 
+        lastname=None,
+        middlename=None , 
+        dob=None
         ):
         """
         Verify user voters card
@@ -42,11 +42,11 @@ class DataVerification(PremblyBase):
 
     def drivers_license(
         self , 
-        search_mode:str='ID', 
-        number:str= None , 
-        firstname:str=None , 
-        lastname:str=None, 
-        dob:str=None
+        search_mode='ID', 
+        number= None , 
+        firstname=None , 
+        lastname=None, 
+        dob=None
         ):
         """
         Verify user voters card

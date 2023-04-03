@@ -27,7 +27,6 @@ class MissingRequiredDataError(PremblyException):
     pass
 
 class APIConnectionError(PremblyException, ConnectionError):
-    """Summary."""
-
+    """Connection error"""
     pass
 
