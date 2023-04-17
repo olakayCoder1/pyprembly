@@ -9,14 +9,13 @@ os.chdir(here)
 
 
 # Get the long description from the README file
-with open(os.path.join(here, 'LONG_DESCRIPTION.md'), encoding='utf-8') as f:
-    long_description = f.read()
-
+with open("README.md", "r") as fh:
+    long_description = fh.read() + "\n\n" + open('CHANGELOG.md', 'r').read()
 
 
 setup(
     name = 'pyprembly',
-    version='0.0.3',
+    version='0.0.4',
     packages = find_packages(exclude=["tests", "tests.*"]), 
     description="Python bindings for the Prembly IdentityPass API",
     long_description=long_description,
@@ -25,7 +24,7 @@ setup(
     keywords='api, client, prembly',
     author="Olanrewaju Kabiru",
     author_email="programmerolakay@gmail.com",
-    url="https://github.com/olakayCoder1/pyprembly",
+    url="https://github.com/prembly/prembly_python",
     python_requires='>=3.x',
     install_requires=[
         "requests","python-dotenv", "urllib3",

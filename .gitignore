@@ -6,3 +6,4 @@ build/
 dist/
 prembly.egg-info/
 .vscode/
+help.py
